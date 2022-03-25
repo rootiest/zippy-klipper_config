@@ -4,6 +4,12 @@ This is my klipper_config that uses custom gcode macros extensively to enhance t
 
 It was originally envisioned to allow data to be communicated from the Slicer to Klipper and then stored in variables for use by other macros during/before/after the print but I would like eventually for it to be a much more extensive project that truly takes advantage of what gcode macros can do!
 
+## Acknowledgments
+
+Many parts of this project were borrowed quite heavily from other people's work. I am compiling a list of acknowledgements to include in this README before posting publicly.
+
+For the moment, individual macro files should contain references to their original sources.
+
 ---
 
 [Klipper](https://www.klipper3d.org/)

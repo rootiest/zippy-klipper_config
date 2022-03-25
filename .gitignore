@@ -2,5 +2,6 @@
 moonraker_secrets.ini
 telegram_config.conf
 *.bkp
-telegram_config.conf
-EADME
+*telegram*
+printer-*.cfg
+*elegram_config.conf
