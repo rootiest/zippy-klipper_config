@@ -1,3 +1,4 @@
 .vscode/
 moonraker_secrets.ini
+telegram_config.conf
 *.bkp
