@@ -3,3 +3,5 @@ moonraker_secrets.ini
 telegram_config.conf
 *.bkp
 printer-*.cfg
+resonanaces_*.csv
+shaper_calibrate_*.png
