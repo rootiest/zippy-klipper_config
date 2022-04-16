@@ -1,6 +1,6 @@
 .vscode/
 moonraker_secrets.ini
-telegram_config.conf
+telegram*.conf
 *.bkp
 printer*.cfg
 resonances_*.csv
