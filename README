@@ -6,13 +6,15 @@ It was originally envisioned to allow data to be communicated from the Slicer to
 
 ## Notes
 
-This is very, very much a work in progress! It's currently running in more or less this iteration on my Ender 3 v2, but it's constantly shifting and changing and at the moment is quite loosely thrown together. My suggestion is to look it over and borrow pieces you think you'd like to use. This project's main goal is to build a coherent collection of macros to dramatically improve the Klipper experience.
+This is very, very much a work in progress!
 
 ## Acknowledgments
 
-Many parts of this project were borrowed quite heavily from other people's work. I am compiling a list of acknowledgements to include in this README before posting publicly.
+Many parts of this project were borrowed quite heavily from other people's work. 
 
-For the moment, individual macro files should contain references to their original sources.
+I am compiling a list of acknowledgements to include in this README before posting publicly.
+
+For the moment, individual macro files *should* contain references to their original sources.
 
 ---
 
