@@ -6,3 +6,4 @@ printer*.cfg
 resonances_*.csv
 shaper_calibrate_*.png
 mooncord.json
+KlipperScreen.conf
