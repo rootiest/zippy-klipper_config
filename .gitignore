@@ -3,7 +3,7 @@ moonraker_secrets.ini
 telegram*.conf
 *.bkp
 printer*.cfg
-variables.cfg
+variable*.cfg
 resonances_*.csv
 shaper_calibrate_*.png
 mooncord.json
