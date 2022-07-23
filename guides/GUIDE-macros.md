@@ -4,9 +4,10 @@
  This software is released under the MIT License.
  https://opensource.org/licenses/MIT
 -->
-# The Macros:
+# The Macros
 
-## Start print macro:
+## Start print macro
+
     [gcode_macro START_PRINT]
     gcode:
         {% set BED_TEMP = params.BED_TEMP|default(60)|float %}
@@ -28,7 +29,8 @@
         # Set and wait for nozzle to reach temperature
         M109 S{EXTRUDER_TEMP}
 
-## End print macro:
+## End print macro
+
     [gcode_macro END_PRINT]
     gcode:
         # Turn off bed, extruder, and fan
@@ -48,27 +50,23 @@ These are just the sample start_print and end_print macros copied directly from 
 
 # Slicer Settings
 
-## Cura:
-
-### Start G-Code:
+## Cura Start G-Code
 
     M109 S0
     M190 S0
     start_print BED_TEMP={material_bed_temperature_layer_0} EXTRUDER_TEMP={material_print_temperature_layer_0}
 
-### End G-Code:
+### Cura End G-Code
 
     end_print
 
 Note: Cura requires the `M109 S0` and `M190 S0` lines to prevent the slicer from adding it's own M109/M190 commands automatically. This is because Cura doesn't take macros into account and will try to add commands it deems "missing" By setting them each to 0 at the start of the gcode it effectively does absolutely nothing, except to appease Cura and allow your macro to do its job.
 
-## SuperSlicer/PrusaSlicer
-
-### Start G-Code:
+## SuperSlicer/PrusaSlicer Start G-Code
 
     start_print BED_TEMP={first_layer_bed_temperature} EXTRUDER_TEMP={first_layer_temperature[initial_extruder] + extruder_temperature_offset[initial_extruder]}
 
-## End G-Code:
+## SuperSlicer/PrusaSlicer End G-Code
 
     end_print
 
