@@ -55,6 +55,10 @@ A huge encyclopedic list of values that can be retrieved for use in macros via t
 
 Describes the installation and use of an accelerometer for measuring resonance and configuring `input_shaper`.
 
+### [Kinematics](https://www.klipper3d.org/Kinematics.html)
+
+Describes how Klipper manages the motion system.
+
 ## Tools and Extensions
 
 ### [KIAUH](https://github.com/th33xitus/kiauh)
