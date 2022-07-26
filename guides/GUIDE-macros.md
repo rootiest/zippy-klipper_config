@@ -6,6 +6,8 @@
 -->
 # The Macros
 
+These are example macros you can use with your slicer to let Klipper manage the start and end procedures.
+
 ## Start print macro
 
     [gcode_macro START_PRINT]
@@ -50,6 +52,8 @@ These are just the sample start_print and end_print macros copied directly from 
 
 # Slicer Settings
 
+These code snippets should be entered in your slicer settings. You should *replace* any existing code in those settings fields with the following.
+
 ## Cura Start G-Code
 
     M109 S0
@@ -71,3 +75,48 @@ Note: Cura requires the `M109 S0` and `M190 S0` lines to prevent the slicer from
     end_print
 
 Note: In most cases you could get away with using just `{first_layer_temperature}` for the extruder temp, but the one used above is a better, more inclusive option that will account for edge cases like printers with multiple extruders while also still working perfectly for more traditional builds.
+
+## Why?
+
+There are many benefits to using a start_print macro!
+
+Because the actual code in the slicer will consist of only a call to the macro, it allows you to change the start procedure without reslicing the model.
+
+For example: Let's say you add a bltouch to your printer and you would like to perform a `BED_MESH_CALIBRATE` during your pre-print procedure. You can add that command to your macro and it will be used by all your gcode files, even older ones that were sliced before this change.
+
+You could even use .gcode files on multiple printers with different start requirements so long as each printer has a start_print macro and doesn't have other differences such as temperature or bed size constraints.
+
+It's actually possible to account for those factors as well if you really want to.
+
+Which brings us to the final benefit I'm going to mention: 
+
+Macros can use more complex logic that doesn't exist in basic gcode commands that can be used in the slicer start gcode. Using a scripting language called Jinja2, we can perform logic tests in macros (if statements, variables, etc)
+
+Here's a really basic example:
+
+    {% set NOZZLE = printer.extruder.nozzle_diameter|default(0.4)|float %}
+    {% if NOZZLE > 0.4 %}
+        M220 S75
+    {% else %}
+        M220 S100
+    {% endif %}
+
+This is not a Jinja2 guide, so I will just briefly explain what this does:
+
+The first line gets the nozzle diameter from Klipper using [the Status Reference function described here](https://www.klipper3d.org/Status_Reference.html#toolhead). 
+
+It also assigns a default in case it's unable to retrieve that value (unlikely)
+
+Then we test whether the value is greater than 0.4mm.
+
+If it is we set the printing speed to 75%.
+
+Otherwise, we set it to 100%.
+
+This is just a very basic example, Jinja2 allows us to basically write mini-programs that make our macros behave dynamically.
+
+The [Status Reference](https://www.klipper3d.org/Status_Reference.html) functionality in Klipper allows us to retrieve basically ***any*** value the printer can access. 
+
+You can even read values directly from the config file, or check whether a `SAVE_CONFIG` is necessary and what items are queued to be saved.
+
+It's pretty powerful stuff, and macros are absolutely worth using!
