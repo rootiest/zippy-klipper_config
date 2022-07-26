@@ -22,3 +22,7 @@ Calibrate the boundaries for bed meshing
 ## [Macros](GUIDE-macros.md)
 
 Create and use macros for your `START_PRINT` and `END_PRINT` gcode commands
+
+## [Useful Links](GUIDE-links.md)
+
+A collection of helpful links for Klipper users
