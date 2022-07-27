@@ -8,6 +8,8 @@
 
 These are example macros you can use with your slicer to let Klipper manage the start and end procedures.
 
+You can just paste these macros into your `printer.cfg` file.
+
 ## Start print macro
 
     [gcode_macro START_PRINT]
