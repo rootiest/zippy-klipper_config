@@ -100,3 +100,12 @@ Works with your [START_PRINT macro](GUIDE-macros.md) to automatically `BED_MESH_
 ### [LED-Effect](https://github.com/julianschill/klipper-led_effect)
 
 Allows you to use animations, layers, and effects on addressable LEDs wired to your Klipper printer.
+
+## Development
+### [Jinja2 Documentation](https://jinja.palletsprojects.com/en/2.10.x/)
+
+This is the language we use for the logic in Klipper macros
+
+The stuff between curly brackets:
+
+ `{ ... }` or `{% ... %}`
