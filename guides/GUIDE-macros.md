@@ -84,7 +84,7 @@ Note: In most cases you could get away with using just `{first_layer_temperature
 
 I am now including the `M109`/`M190` dummy commands in the SuperSlicer/PrusaSlicer Start Gcode. PrusaSlicer appears to need them for the same reasons as Cura.
 
-SuperSlicer *shouldn't* when selecting `Klipper` for the G-code Flavor. However, on the latest version the merge with the PrusaSlicer source overwrote this check and it behaves the same way as the others. This has been confirmed fixed for the next SuperSlicer release and I will update the guide when that changes.
+SuperSlicer *shouldn't* when selecting `Klipper` for the G-code Flavor. However, on the latest version the merge with the PrusaSlicer source overwrote this check and it behaves the same way as the others. This has been [confirmed fixed for the next SuperSlicer release](https://github.com/supermerill/SuperSlicer/issues/875) and I will update the guide when that changes.
 
 It's also worth noting this shouldn't be a serious concern in most cases. At most, allowing the Slicer to automatically add those commands after the macro may just cause a slight hesitation/lag immediately before the print begins. 
 
