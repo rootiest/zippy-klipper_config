@@ -70,6 +70,8 @@ Note: Cura requires the `M109 S0` and `M190 S0` lines to prevent the slicer from
 
 ## SuperSlicer/PrusaSlicer Start G-Code
 
+    M109 S0
+    M190 S0
     start_print BED_TEMP={first_layer_bed_temperature} EXTRUDER_TEMP={first_layer_temperature[initial_extruder] + extruder_temperature_offset[initial_extruder]}
 
 ## SuperSlicer/PrusaSlicer End G-Code
@@ -78,7 +80,17 @@ Note: Cura requires the `M109 S0` and `M190 S0` lines to prevent the slicer from
 
 Note: In most cases you could get away with using just `{first_layer_temperature}` for the extruder temp, but the one used above is a better, more inclusive option that will account for edge cases like printers with multiple extruders while also still working perfectly for more traditional builds.
 
-## Why?
+### Update:
+
+I am now including the `M109`/`M190` dummy commands in the SuperSlicer/PrusaSlicer Start Gcode. PrusaSlicer appears to need them for the same reasons as Cura.
+
+SuperSlicer *shouldn't* when using selecting `Klipper` for the G-code Flavor. However, on the latest version the merge with the PrusaSlicer source overwrote this check and it behaves the same way as the others. This has been confirmed fixed for the next SuperSlicer release and I will update the guide when that changes.
+
+It's also worth noting this shouldn't be a serious concern in most cases. At most, allowing the Slicer to automatically add those commands after the macro may just cause a slight hesitation/lag immediately before the print begins. 
+
+However, if you wish to do something like offset temperature values using code in your macro, you may have an issue without the dummy commands because the Slicer will set them back at the start of the first layer.
+
+## Why use macros?
 
 There are many benefits to using a start_print macro!
 
