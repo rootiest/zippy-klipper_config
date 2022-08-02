@@ -27,7 +27,7 @@ As the printer cannot move beyond the endstops, those mark the minimum (or maxim
 
 If your chosen web interface does not display the current position, you can use the following terminal command: `GET_POSITION`
 
-This will return a bunch of position data.
+This will return several lines of position data.
 
 For our purposes we can use the values on the "toolhead" line to represent our **current coordinates**.
 
