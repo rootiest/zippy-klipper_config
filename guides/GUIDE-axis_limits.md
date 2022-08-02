@@ -25,6 +25,16 @@ Unless your endstops are at the max positions in which case the `position_endsto
 
 As the printer cannot move beyond the endstops, those mark the minimum (or maximum) positions.
 
+If your chosen web interface does not display the current position, you can use the following terminal command: `GET_POSITION`
+
+This will return a bunch of position data.
+
+For our purposes we can use the values on the "toolhead" line to represent our **current coordinates**.
+
+Ex:
+
+    Recv: // toolhead: X:8.338078 Y:-3.123175 Z:233.347878 E:0.000000
+
 ### Calibration steps
 
 Home your printer and then use the Mainsail/Fluidd interface controls to manually move the nozzle directly above the front-left corner. Make note of the coordinates it shows.
