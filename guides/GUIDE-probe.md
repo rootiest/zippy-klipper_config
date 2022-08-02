@@ -42,6 +42,24 @@ You ***will*** need to change the x and y offsets to be accurate for your probe'
 
 Then you will also need to calibrate the z-offset. (Again, follow [the docs](https://www.klipper3d.org/Probe_Calibrate.html#calibrating-probe-z-offset))
 
+## Safe homing
+
+It's important to configure a `[safe_z_home]` section so your probe knows to home in the center of your bed.
+
+You can use the defaults:
+
+    [safe_z_home]
+    home_xy_position: 100, 100
+
+as a "good enough" on most beds, but it doesn't hurt to configure it a little better.
+
+The simplest way to do this is to use the interface manually move the probe to what you believe to be the center of the bed and note those coordinates much [like we did in previous guides](GUIDE-axis_limits.md#calibrating-00-and-position_min).
+
+Use those values for your `home_xy_position`.
+
+This can be further tuned to the mathematical center, but I believe we will need to finish calibrating the offsets below first:
+
+(I need to do more testing on the math for this, but the above will get you a reasonably close `home_xy_position`)
 ## Calibrating the probe offsets
 
 ### X,Y offsets walkthrough:
