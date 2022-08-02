@@ -19,8 +19,8 @@
 The following is a typical config for a CRTouch:
 
     [bltouch] 
-    sensor_pin: PB1
-    control_pin: ^PB0
+    sensor_pin: ^PB1
+    control_pin: PB0
     x_offset: 0                  # Change to fit your printer
     y_offset: 0                  # Change to fit your printer
     z_offset: 2.295              # Change to fit your printer
