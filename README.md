@@ -19,10 +19,15 @@ Additionally, this config now utilizes:
 - Multi-pitch beeper
 - Smart plug for printer power
 - Smart plug for Filter power
-- Several controller boards: Printer, Pi Host, Pico, and a QTPY-rp2040
+- Nevermore Carbon Filter
+- A controllable fan-enhanced desiccant box
+- MAX31865/PT-1000 extruder thermistor
+- Several controller boards: Printer, Pi Host, EBB42 CANbus Toolhead, Pico, and two QTPY-rp2040
+- All of the toolhead components have been moved to the CANbus board
 - Speed-controlled and RPM-monitored mcu cooling fan
 - Smart filament sensor with automated filament change procedure
-- ADXL accelerometer for resonance tuning and input shaping
+- Two ADXL accelerometers for resonance tuning and input shaping
+- An extensive collection of custom macros
 
 ## Warnings
 
