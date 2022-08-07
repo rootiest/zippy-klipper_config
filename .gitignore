@@ -5,7 +5,6 @@ telegram*.conf
 printer*.cfg
 variables.cfg
 resonances_*.csv
-shaper_calibrate_*.png
 mooncord.json
 KlipperScreen.conf
 moonraker-obico.cfg
