@@ -75,6 +75,8 @@ An SN65HVD230 is what is recommended but theoretically any CAN transceiver chip 
 
 [This is what I purchased](https://smile.amazon.com/SN65HVD230-CAN-Board-Transceiver-Microcontrollers/dp/B084M5ZQST/).
 
+![SN65HVD230](resources/can-trans.jpg)
+
 Note: The power pins on this board say 3.3V but it appears to be completely 5V tolerant. (I took the risk so you wouldn't have to!) and it works perfectly fine driven by a 5V pin on my SKR-Pico.
 
 ## How to do it
@@ -84,6 +86,8 @@ I'm going to assume you already have the SKR-Pico working and configured over US
 If you've just purchased one, you should start with that. They have really great documentation. Make sure everything works traditionally before trying to configure CAN.
 
 Now, we're going to use the convenient UART connector on the SKR-Pico. A short pre-made cable for this connector is even included in the box, for connecting the board to a pi over UART.
+
+![UART Connector Cable](resources/skr-pico_uart.jpg)
 
 The pinout of that cable is compatible with the transceiver, so it's a great fit that means this modification can be done entirely without soldering.
 
@@ -107,9 +111,23 @@ Align the ***second*** 5V pin of the Dupont connector with the 3.3V pin on the t
 
 ![CAN Transceiver](resources/PicoCAN-trans.jpg)
 
-That's it, the transceiver is connected.
+That's it, the transceiver is connected!
 
-You will connect the CAN data pins to the screw terminals on the opposite end of the transceiver. You will connect the 24V and GND of your CANboard to your PSU.
+Here is what it would look like with the included cable:
+
+![CAN transceiver UART cable](resources/can-trans-uart.jpg)
+
+        Transceiver -> Color -> SKR-Pico
+
+        1. CAN-TX   -> Green   -> GPIO0
+        2. CAN-RX   -> Yellow  -> GPIO1
+        3. GND      -> Black   -> GND
+        4. 3.3V     -> Red     -> 5V
+        5. EMPTY    -> Red     -> 5V
+
+You will connect the CAN signal pins to the screw terminals on the opposite end of the transceiver. 
+
+You will connect the 24V and GND of your CANboard(s) to your PSU.
 
 ## Flashing the CANbridge firmware
 
