@@ -26,3 +26,7 @@ Create and use macros for your `START_PRINT` and `END_PRINT` gcode commands
 ## [Useful Links](GUIDE-links.md)
 
 A collection of helpful links for Klipper users
+
+## [CANbus your Pico](Guide-pico_can.md)
+
+How to use an SKR-Pico (or any Pico board) as both a CANbus bridge *and* a Klipper mcu.
