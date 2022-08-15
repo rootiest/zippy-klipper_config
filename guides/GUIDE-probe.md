@@ -95,6 +95,19 @@ This is covered [in the docs here](https://www.klipper3d.org/Probe_Calibrate.htm
 
 It's also [described in more detail here](https://www.klipper3d.org/Bed_Level.html#the-paper-test).
 
+#### Prerequisites
+
+You will likely need to set your `stepper_z` `position_min` to a negative value:
+
+    [stepper_z]
+    position_min: -10
+
+during the calibration.
+
+Afterwards, set it to `-1` to allow a little room for later calibrations while preventing the nozzle from smashing through the bed if the probe fails catastrophically.
+
+#### Calibrating
+
 Run `PROBE_CALIBRATE`
 
 Then use `TESTZ Z=-1` to bring the nozzle 1mm **closer** to the bed
