@@ -29,6 +29,10 @@ Additionally, this config now utilizes:
 - Two ADXL accelerometers for resonance tuning and input shaping
 - An extensive collection of custom macros
 
+## Guides
+
+If you are looking for guides on calibrating or setting up a new Klipper printer, those are here: [Guides](guides/README.md)
+
 ## Warnings
 
 ### This is still very, very much a work in progress
