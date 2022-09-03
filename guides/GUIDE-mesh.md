@@ -83,6 +83,18 @@ In that case, you'll need to revisit your `mesh_max` configuration for that axis
 
 If the error shows a move to negative coordinates and/or the failure occurs on the left/front side of the bed, then you will need to correct your `mesh_min` configuration to account for the offset that was moving you beyond the physical limits.
 
+## Probe Limits Macro
+
+You can use [this GET_PROBE_LIMITS macro](../macros/GET_PROBE_LIMITS.cfg) to find the physical minimum and maximum probe coordinates as well as the current probe coordinates. 
+
+This can be helpful if you'd like to avoid doing the math yourself as it will display the range of possible values that can be successfully used for `mesh_min` and `mesh_max`.
+
+To use this macro, download the `GET_PROBE_LIMITS.cfg` file to your `~/klipper_config` directory and add the following near the top of your `printer.cfg` file: 
+
+    [include GET_PROBE_LIMITS.cfg]
+
+Credit to [u/davidosmithII](https://www.reddit.com/user/davidosmithII/) who came up with the idea and created the original macro to do it.
+
 ## References
 
 [Bed Mesh](https://www.klipper3d.org/Bed_Mesh.html)
