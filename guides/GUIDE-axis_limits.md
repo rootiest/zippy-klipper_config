@@ -11,6 +11,8 @@ The purpose of the stepper `min_position` and `max_position` is to establish the
 
 These values shouldn't represent your bed size, particularly on the X-axis where you should be able to travel well beyond the range of your bed on a typical Ender-style printer.
 
+At the same time, you don't want the printer to try to travel *further* than it's physically able to, as that will cause grinding, layer shifting, and inaccurate coordinates.
+
 ## Calibrating 0,0 and position_min
 
 ### Notes
