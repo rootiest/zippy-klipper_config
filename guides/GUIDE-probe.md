@@ -134,6 +134,24 @@ I recommend to set your Z offset as best you can using the above methods, and th
 
 Use that print to further refine your z-offset.
 
+The process to do so is similar to what you'd call "baby-stepping" on Marlin.
+
+If you don't have some manner of control interface to perform the baby-stepping, you can use gcode commands:
+
+    # Move the z-axis offset 0.2mm higher
+    SET_GCODE_OFFSET Z=0.2
+    
+    # Move the z-axis offset 0.3mm lower
+    SET_GCODE_OFFSET Z=-0.3
+
+Then use the following commands after the print completes to save the offset to your config:
+
+    Z_OFFSET_APPLY_PROBE
+    SAVE_CONFIG
+
+
+
+
 Here are some images to help you recognize a properly calibrated first layer:
 
 ![first_layer1](resources/first_layer1.png)
