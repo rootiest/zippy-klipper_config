@@ -144,10 +144,14 @@ If you don't have some manner of control interface to perform the baby-stepping,
     # Move the z-axis offset 0.3mm lower
     SET_GCODE_OFFSET Z=-0.3
 
+Reference: [SET_GCODE_OFFSET](https://www.klipper3d.org/G-Codes.html#set_gcode_offset)
+
 Then use the following commands after the print completes to save the offset to your config:
 
     Z_OFFSET_APPLY_PROBE
     SAVE_CONFIG
+
+Reference: [Z_OFFSET_APPLY_PROBE](https://www.klipper3d.org/G-Codes.html#z_offset_apply_probe)
 
 Here are some images to help you recognize a properly calibrated first layer:
 
