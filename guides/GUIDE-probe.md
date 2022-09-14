@@ -149,9 +149,6 @@ Then use the following commands after the print completes to save the offset to 
     Z_OFFSET_APPLY_PROBE
     SAVE_CONFIG
 
-
-
-
 Here are some images to help you recognize a properly calibrated first layer:
 
 ![first_layer1](resources/first_layer1.png)
