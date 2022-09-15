@@ -66,6 +66,11 @@ This can be further tuned to the mathematical center, but I believe we will need
 
 The basic idea is to compare the coordinates the printer registers for the nozzle and coordinates registered for the probe in the same physical location on the bed. The offset is the difference between those two sets of coordinates.
 
+Run `G28` to home the printer.
+
+> If your nozzle moves to 0,0 after homing then manually move the nozzle using the interface controls or gcode commands so that the probe's position is near the center of the bed. It doesn't need to be perfect.
+
+
 Run the `PROBE` command. Mark the point on the bed where the probe pin touched using whatever method works for you.
 
 You can use tape, your memory, a sharpie, it doesn't matter. Whatever works.
@@ -107,6 +112,10 @@ during the calibration.
 Afterwards, set it to `-1` to allow a little room for later calibrations while preventing the nozzle from smashing through the bed if the probe fails catastrophically.
 
 #### Calibrating
+
+Run `G28` to home the printer.
+
+> If your nozzle moves to 0,0 after homing then manually move the nozzle using the interface controls or gcode commands so that the probe's position is near the center of the bed. It doesn't need to be perfect.
 
 Run `PROBE_CALIBRATE`
 
