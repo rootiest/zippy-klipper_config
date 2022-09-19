@@ -85,7 +85,7 @@ If the error shows a move to negative coordinates and/or the failure occurs on t
 
 ## Probe Limits Macro
 
-You can use [this GET_PROBE_LIMITS macro](../macros/GET_PROBE_LIMITS.cfg) to find the physical minimum and maximum probe coordinates as well as the current probe coordinates. 
+You can use [this GET_PROBE_LIMITS macro](resources/GET_PROBE_LIMITS.cfg) to find the physical minimum and maximum probe coordinates as well as the current probe coordinates. 
 
 This can be helpful if you'd like to avoid doing the math yourself as it will display the range of possible values that can be successfully used for `mesh_min` and `mesh_max`.
 
