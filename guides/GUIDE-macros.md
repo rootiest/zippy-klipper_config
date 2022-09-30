@@ -10,7 +10,7 @@ These are example macros you can use with your slicer to let Klipper manage the 
 
 You can just paste these macros into your `printer.cfg` file.
 
-## Start print macro
+## START_PRINT Macro
 
     [gcode_macro START_PRINT]
     gcode:
@@ -33,7 +33,7 @@ You can just paste these macros into your `printer.cfg` file.
         # Set and wait for nozzle to reach temperature
         M109 S{EXTRUDER_TEMP}
 
-## End print macro
+## END_PRINT Macro
 
     [gcode_macro END_PRINT]
     gcode:
