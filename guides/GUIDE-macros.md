@@ -89,7 +89,7 @@ Additionally, the PrusaSlicer format shown in the above section is also compatib
 
     end_print
 
-> Note: This part is the same for all Slicers. We just need to call the `END_PRINT` macro, there's no need to pass any values to it.
+> Note: This code is the same for all Slicers. We just need to call the `END_PRINT` macro, there's no need to pass any values to it.
 
 ### Update:
 
