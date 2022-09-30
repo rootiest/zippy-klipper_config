@@ -89,6 +89,8 @@ Additionally, the PrusaSlicer format shown in the above section is also compatib
 
     end_print
 
+> Note: This part is the same for all Slicers. We just need to call the `END_PRINT` macro, there's no need to pass any values to it.
+
 ### Update:
 
 I am now including the `M109`/`M190` dummy commands in the SuperSlicer/PrusaSlicer Start Gcode. PrusaSlicer appears to need them for the same reasons as Cura.
