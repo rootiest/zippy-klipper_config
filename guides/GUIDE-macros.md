@@ -62,11 +62,11 @@ These code snippets should be entered in your slicer settings. You should *repla
     M190 S0
     start_print BED_TEMP={material_bed_temperature_layer_0} EXTRUDER_TEMP={material_print_temperature_layer_0}
 
+> Note: Cura requires the `M109 S0` and `M190 S0` lines to prevent the slicer from adding it's own M109/M190 commands automatically. This is because Cura doesn't take macros into account and will try to add commands it deems "missing" By setting them each to 0 at the start of the gcode it effectively does absolutely nothing, except to appease Cura and allow your macro to do its job.
+
 ### Cura End G-Code
 
     end_print
-
-> Note: Cura requires the `M109 S0` and `M190 S0` lines to prevent the slicer from adding it's own M109/M190 commands automatically. This is because Cura doesn't take macros into account and will try to add commands it deems "missing" By setting them each to 0 at the start of the gcode it effectively does absolutely nothing, except to appease Cura and allow your macro to do its job.
 
 ## PrusaSlicer Start G-Code
 
