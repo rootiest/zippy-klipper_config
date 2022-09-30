@@ -66,15 +66,7 @@ These code snippets should be entered in your slicer settings. You should *repla
 
     end_print
 
-Note: Cura requires the `M109 S0` and `M190 S0` lines to prevent the slicer from adding it's own M109/M190 commands automatically. This is because Cura doesn't take macros into account and will try to add commands it deems "missing" By setting them each to 0 at the start of the gcode it effectively does absolutely nothing, except to appease Cura and allow your macro to do its job.
-
-## SuperSlicer Start G-Code
-
-    M109 S0
-    M190 S0
-    start_print BED_TEMP={first_layer_bed_temperature} EXTRUDER_TEMP={first_layer_temperature[initial_extruder] + extruder_temperature_offset[initial_extruder]}
-
-Note: In most cases you could get away with using just `{first_layer_temperature}` for the extruder temp, but the one used above is a better, more inclusive option that will account for edge cases like printers with multiple extruders while also still working perfectly for more traditional builds.
+> Note: Cura requires the `M109 S0` and `M190 S0` lines to prevent the slicer from adding it's own M109/M190 commands automatically. This is because Cura doesn't take macros into account and will try to add commands it deems "missing" By setting them each to 0 at the start of the gcode it effectively does absolutely nothing, except to appease Cura and allow your macro to do its job.
 
 ## PrusaSlicer Start G-Code
 
@@ -82,7 +74,21 @@ Note: In most cases you could get away with using just `{first_layer_temperature
     M190 S0
     start_print EXTRUDER_TEMP={first_layer_temperature[initial_extruder]} BED_TEMP={first_layer_bed_temperature[initial_extruder]}
 
-Note: PrusaSlicer recently changed their placeholder/variable formatting. The above applies to PrusaSlicer 2.5.0. For previous versions the SuperSlicer example above should be compatible.
+> Note: PrusaSlicer recently changed their placeholder/variable formatting. The above applies to PrusaSlicer 2.5.0. For previous versions the SuperSlicer example above should be compatible.
+
+## SuperSlicer Start G-Code
+
+    M109 S0
+    M190 S0
+    start_print BED_TEMP={first_layer_bed_temperature} EXTRUDER_TEMP={first_layer_temperature[initial_extruder] + extruder_temperature_offset[initial_extruder]}
+
+> Note: In most cases you could get away with using just `{first_layer_temperature}` for the extruder temp, but the one used above is a better, more inclusive option that will account for edge cases like printers with multiple extruders while also still working perfectly for more traditional builds.
+> 
+Additionally, the PrusaSlicer format shown in the above section is also compatible with SuperSlicer. Or they can be combined to cover every possible build scenario:
+
+    M109 S0
+    M190 S0
+    start_print BED_TEMP={first_layer_bed_temperature[initial_extruder]} EXTRUDER_TEMP={first_layer_temperature[initial_extruder] + extruder_temperature_offset[initial_extruder]}
 ## SuperSlicer/PrusaSlicer End G-Code
 
     end_print
