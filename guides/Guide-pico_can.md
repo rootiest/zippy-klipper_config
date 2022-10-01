@@ -254,16 +254,15 @@ I found that I had trouble sometimes bringing the CAN network back up after a `F
 This can be solved by the following process.
 
 Run:
-
+    sudo rm /etc/network/interfaces.d/can0
     sudo nano /etc/network/interfaces.d/can0
 
-Change the first line:
-
-    auto can0
-
-to:
+Enter (paste) the following into the editor:
 
     allow-hotplug can0
+    iface can0 can static
+        bitrate 500000
+        up ifconfig $IFACE txqueuelen 128
 
 Press `Ctrl+X` to exit the editor, followed by `Y` and `Enter` to save changes. Then reboot again to be sure.
 
