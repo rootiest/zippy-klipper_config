@@ -1,0 +1,32 @@
+// Copyright (c) 2022 Chris Laprade (chris@rootiest.com)
+// 
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
+
+# Samples
+
+This folder contains sanitized samples of the config files that are not synced by this repo.
+
+## printer.cfg
+
+This file is not synced so as to not overwrite the SAVE_CONFIG block at the end. This is a sample of the contents of that file.
+
+## variables.cfg
+
+This file is also not synced in order to avoid overwriting it, but it's also created and filled entirely by values from the SAVE_VARIABLE command and requires no manual editing.
+
+## moonraker_secrets.ini
+
+This file is for storing passwords and other private information to use within moonraker's config. All values have been sanitized.
+
+## telegram.conf
+
+This is the config file for moonraker-telegram-bot. Sanitized to remove private telegram tokens and chat IDs.
+
+## telegram_config.conf
+
+This is the config file for moonraker-telegram. Again, sanitized remove private telegram tokens and chat IDs.
+
+## mooncord.json
+
+This is the config file for Mooncord. Sanitized to remove private Discord information.
