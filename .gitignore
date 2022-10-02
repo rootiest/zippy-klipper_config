@@ -1,5 +1,4 @@
 .vscode/
-moonraker_secrets.ini
 *.bkp
 printer*.cfg
 variables.cfg
