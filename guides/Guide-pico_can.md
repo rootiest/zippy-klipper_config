@@ -254,6 +254,7 @@ I found that I had trouble sometimes bringing the CAN network back up after a `F
 This can be solved by the following process.
 
 Run:
+
     sudo rm /etc/network/interfaces.d/can0
     sudo nano /etc/network/interfaces.d/can0
 
