@@ -33,7 +33,9 @@ Additionally, this config now utilizes:
 - Monitors chamber, ambient, and spool temp/humidity and VOC levels
 - WLED-controlled addressable LED strips
 - Directly-controlled addressable LEDs
-- KlipperScreen and an OLED panel
+- KlipperScreen on a 7-inch HDMI touchscreen
+- Two SSH1306 OLED displays with custom display data
+- A BTT Mini12860 display hosted by a custom STM32 controller board for easy usb connectivity
 - Rotary encoder and several physical buttons
 - Multi-pitch beeper
 - Smart plug for printer power
@@ -41,9 +43,10 @@ Additionally, this config now utilizes:
 - Nevermore Carbon Filter
 - A controllable fan-enhanced desiccant box
 - MAX31865/PT-1000 extruder thermistor
-- Several controller boards: Printer, Pi Host, EBB42 CANbus Toolhead, Pico, and two QTPY-rp2040
+- Several controller boards: SKR-Pico, Pi Host, EBB42 CANbus Toolhead, Pico, and two QTPY-rp2040
 - All of the toolhead components have been moved to the CANbus board
-- Speed-controlled and RPM-monitored mcu cooling fan
+- Speed-controlled cooling fans for Nevermore, bed fans, and part-cooling
+- Temperature-controlled fans for hotend, exhaust, SKR-Pico, and Pi host.
 - Smart filament sensor with automated filament change procedure
 - Two ADXL accelerometers for resonance tuning and input shaping
 - An extensive collection of custom macros
@@ -60,11 +63,23 @@ I'm working on, breaking, changing, and using this daily! I strongly suggest nob
 
 It is likely to fail/crash on your system in its current state!
 
+Many of these macros work as great examples of using scripting and other Klipper features to perform different tasks. 
+
+Many may even work on your printer as-is. 
+
+But a lot of them won't. 
+
+So consider this more of a selection of examples that will likely need to be tailored to fit your unique system. Use it as a resource to see how you *could* do something, not necessarily how you **should**. Feel free to message me with questions if you have them.
+
 ## Notes
 
 ### The files in the `extras` folder are **not used**
 
+This may be just because they conflict with other existing macros I already use, or they are there as samples/examples. But they aren't included on my personal system.
+
 ### The files in the `machine` and `macros` folders are included in the config
+
+The `machine` folder is included by the [printer.cfg](extras/samples/printer.cfg) file and the rest are included through [zippy.cfg](machine/zippy.cfg)
 
 ### The `printer.cfg` file is not synced in order to preserve automatic config overrides
 
@@ -74,11 +89,14 @@ Its only contents (aside from automated overrides) are:
     
     # Machine  directory
     [include machine/*.cfg]
-    
-    # Macros directory
-    [include macros/*.cfg]
 
 This way we can have full access to modify any parts of the config without risking overwriting the automated overrides.
+
+The [zippy.cfg file](machine/zippy.cfg) contains the includes for the macros directory as well as some other files used by extensions. This allows the paths of those files to be preserved to maintain compatibility with extension updates.
+
+A snapshot of the printer.cfg file is available to see here:
+
+[printer.cfg](extras/samples/printer.cfg)
 
 ### The following files are not synced for privacy and security purposes
 
@@ -87,9 +105,17 @@ This way we can have full access to modify any parts of the config without riski
 - telegram_conf.conf
 - moonraker_secrets.ini
 
+Sanitized examples can be seen here:
+
+[Sanitized Samples](extras/samples/README)
+
 ### Automated backups are also ignored
 
 This helps to prevent accidental syncing of your private passwords or tokens as well as reducing clutter from backup files.
+
+## Contact
+
+You can reach me on Discord at `rootiest#5668`
 
 ## Acknowledgments
 
