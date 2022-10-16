@@ -97,6 +97,8 @@ In short, this an automated config saver.
 
 ### Misc
 
+[FILAMENT_RUNOUT.cfg](FILAMENT_RUNOUT.cfg) contains some macros for working with the filament sensor. There's a `FILAMENT_RUNOUT` command which just adds some status updates to the `M600` command. And macros to enable/disable the filament sensor and a delayed_gcode to disable the filament sensor on a timer. These make it easier to programmatically disable/enable the sensor.
+
 [PARKING.cfg](PARKING.cfg) I love this one because it's so simple but so useful. This just is a collection of small macros that park the nozzle at various positions. All the positions are calculated use position\_min and/or position\_max so they will work on any printer/bed-size.
 
 [GET\_PROBE\_LIMITS.cfg](GET_PROBE_LIMITS.cfg) is useful when first configuring your bed mesh settings as it gives you the probe-offset values for the min/max/current nozzle positions.
