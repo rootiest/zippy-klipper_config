@@ -35,7 +35,7 @@ Additionally, this config now utilizes:
 - Directly-controlled addressable LEDs
 - KlipperScreen on a 7-inch HDMI touchscreen
 - Two SSH1306 OLED displays with custom display data
-- A BTT Mini12860 display hosted by a custom STM32 controller board for easy usb connectivity
+- A BTT Mini12864 display hosted by a custom STM32 controller board for easy usb connectivity
 - Rotary encoder and several physical buttons
 - Multi-pitch beeper
 - Smart plug for printer power
