@@ -103,7 +103,7 @@ You can use [this GET_PROBE_LIMITS macro](resources/GET_PROBE_LIMITS.cfg) to fin
 
 This can be helpful if you'd like to avoid doing the math yourself as it will display the range of possible values that can be successfully used for `mesh_min` and `mesh_max`.
 
-To use this macro, download the `GET_PROBE_LIMITS.cfg` file to your `~/klipper_config` directory and add the following near the top of your `printer.cfg` file: 
+To use this macro, download the `GET_PROBE_LIMITS.cfg` file to your `~/printer_data/config` directory and add the following near the top of your `printer.cfg` file: 
 
     [include GET_PROBE_LIMITS.cfg]
 
