@@ -481,6 +481,16 @@ This is a true/false value, defined as `bool`
 
 This is regular text, defined as `string`
 
+## Arrays
+
+__WIP__ (This section is not yet completed)
+
+## The Printer Object
+
+[Klipper Docs](https://www.klipper3d.org/Status_Reference.html)
+
+__WIP__ (This section is not yet completed)
+
 ## Delayed Gcode Macros
 
 Delayed Gcode macros allow you to run a macro after a delay. This delay can be set to run after startup, or it can be initiated by another macro.
@@ -510,16 +520,71 @@ This will tell Klipper to execute the delayed_gcode (and then our `MY_MACRO` mac
 
 This can be used to set shutdown timers or disable preheat fans 15 minutes into a print, whatever you'd like!
 
-## The Printer Object
+## Organizing your config
 
-[Klipper Docs](https://www.klipper3d.org/Status_Reference.html)
+Once we start adding additional components and macros, the `printer.cfg` file can get pretty crowded.
 
-__WIP__ (This section is not yet completed)
+We can better organize our configuration by splitting it up into multiple files.
 
-## Arrays
+To do so we use:
 
-__WIP__ (This section is not yet completed)
+### The `[include]` function.
 
+[Config Reference](https://www.klipper3d.org/Config_Reference.html#include)
+
+For example, to include a `pico.cfg` file stored in the same directory as `printer.cfg` we would use the following:
+
+    [include pico.cfg]
+
+If that file is in a subdirectory called `macros` we would use this:
+
+    [include macros/pico.cfg]
+
+To include ***every*** file in the `macros` subdirectory, we can use this:
+
+    [include macros/*.cfg]
+
+Now let's assume your `printer.cfg` file is located in `~/printer_data/config` but we want to include a `pico.cfg` file that's in the `~` directory.
+
+We have two options.
+
+We can use the absolute path:
+
+    [include ~/pico.cfg]
+
+or we can use the relative path:
+
+    [include ../../pico.cfg]
+
+Two periods `..` means "go up 1 directory level" so we can use those to reference the directory *above* the current one.
+
+This feature can be used to better organize your config so you can do things such as:
+
+- Organize your configs by mcu
+- Group related macros together
+- Easily swap between different configurations by changing a single line in your `printer.cfg` file
+- much more!
+
+### NOTES
+
+__The `[include]` feature is not fully compatible with `SAVE_CONFIG`.__
+
+Any sections for which you would like to use the `SAVE_CONFIG` function:
+
+- extruder pid
+- bed_mesh
+- z_offset
+- etc
+
+These sections must be initially placed in the `printer.cfg` file to support `SAVE_CONFIG` overrides. 
+
+You will not be able to perform a `SAVE_CONFIG` override on any of those settings while the originals are defined in an included file.
+
+However, once you have successfully `SAVE_CONFIGGED` that setting, the original values will be commented out and the calibrated values added to the `SAVE_CONFIG` block at the end of the `printer.cfg` file.
+
+After this point you can safely move the relevant section to an included file and subsequent `SAVE_CONFIG` operations against those values will execute successfully.
+
+The originally only must be in the main `printer.cfg` file initially, for the first override. Once you have run `SAVE_CONFIG` for that section, it can be moved to any file.
 ## Useful Links
 
 > __NOTE:__ Take precaution using some of these resources as they may/do contain some outdated information.

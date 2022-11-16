@@ -126,6 +126,10 @@ That's it!
 
 Presumably you'd like to add additional components, but I would suggest starting out with just this most basic pico mcu configuration to ensure Klipper is able to connect successfully.
 
+If you are able to successfully start/connect Klipper with that section added to your `printer.cfg` file, you are done!
+
+You can now try adding some extras as described below:
+
 ## Useful Extras
 
 ### MCU Core Temperature
@@ -255,6 +259,57 @@ To turn it off:
     SET_PIN PIN=_my_pico_status VALUE=0
 
 [Klipper Docs](https://www.klipper3d.org/G-Codes.html#set_pin)
+
+### Organizing your config
+
+Once we start adding all these components and macros, the `printer.cfg` file can get pretty crowded.
+
+We can use the `[include]` feature to better organize our config.
+
+For example, let's put all the configurations we just did into a new `pico.cfg` file.
+
+The `pico.cfg` file:
+
+    [mcu my_pico]
+    serial: /dev/serial/by-id/usb-Klipper_rp2040_E660C062135C6A24-if00
+
+    [temperature_sensor pico_temp]
+    sensor_type: temperature_mcu
+    sensor_mcu: my_pico
+    min_temp: 0
+    max_temp: 100
+
+    [neopixel pico_led]
+    pin: my_pico: gpio12
+    initial_RED: 1.0
+    initial_GREEN: 1.0
+    initial_BLUE: 1.0
+
+    [static_digital_output enable_pico_led]
+    pins: my_pico: gpio11
+
+    [output_pin _my_pico_status]
+    pin: my_pico: gpio25
+    value: 1
+    shutdown_value: 0
+
+    [gcode_macro GET_PICO_TEMP]
+    gcode:
+        {%set core_temp = printer["temperature_sensor pico_temp"].temperature %}
+        M117 "Pico: {core_temp}"
+        {% if core_temp > 60 %}
+            M117 Too hot!!!
+        {% endif %}
+
+We can save that file in the same directory as the `printer.cfg` file and then include it with the following line in the `printer.cfg` file:
+
+    [include pico.cfg]
+
+For more information:
+
+[This Section of my Advanced Guide](GUIDE-variables.md#organizing-your-config)
+
+[Config Reference](https://www.klipper3d.org/Config_Reference.html#include)
 
 ### Useful Links
 
