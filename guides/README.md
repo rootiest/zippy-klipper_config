@@ -37,7 +37,9 @@ Create and use macros for your `START_PRINT` and `END_PRINT` gcode commands.
 
 ## [Advanced Macro Techniques](GUIDE-variables.md) (WIP)
 
-Learn more advanced techniques you can use in your macros. This guide will cover parameters, variables and types, gcode_variables, persistant_variables, the printer object, delayed_gcode, and more.
+Learn more advanced techniques you can use in your macros.
+
+Covers parameters, variables and types, gcode_variables, persistant_variables, the printer object, delayed_gcode, and more.
 
 __This guide is still incomplete and unfinished.__
 
@@ -45,7 +47,9 @@ __Some sections are missing and others may contain typos or errors.__
 
 ## [USB Pico Setup](GUIDE-usb-pico.md)
 
-Set up a USB-connected Pico (or any RP2040 board) as a secondary mcu. Covers compiling, flashing, configuring in Klipper, and some extras!
+Set up a USB-connected Pico (or any RP2040 board) as a secondary mcu.
+
+Covers compiling, flashing, configuring in Klipper, and some extras!
 
 ## [CANbus your Pico](Guide-pico_can.md)
 
