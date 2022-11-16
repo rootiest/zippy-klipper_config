@@ -216,11 +216,11 @@ Run the following command:
 
 This will copy the firmware image we compiled earlier onto the SKR-Pico's storage and it will be flashed automatically.
 
-This take a minute or so.
+This may take a minute or so.
 
 When it is complete, the storage will be automatically unmounted.
 
-I repeatedly run the `ls /mnt` command until it stops listing the files. That indicates the flash is now complete.
+I like to repeatedly run the `ls /mnt` command until it stops listing the files. That indicates the flash is now complete.
 
 At this time, the printer will no longer connect to the SKR-Pico mcu with the old usb configuration.
 

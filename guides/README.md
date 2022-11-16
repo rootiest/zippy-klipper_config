@@ -21,24 +21,36 @@
 
 ## [Axis Limits](GUIDE-axis_limits.md)
 
-Calibrate the travel/print boundaries for your machine
+Calibrate the physical travel and bed size/print boundaries for *your* machine.
 
 ## [Probe Offsets](GUIDE-probe.md)
 
-Calibrate your probe offsets for X,Y,Z
+Calibrate your probe offsets for X,Y,and Z axis.
 
 ## [Bed Mesh Boundaries](GUIDE-mesh.md)
 
-Calibrate the boundaries for bed meshing
+Calibrate the boundaries for bed meshing.
 
 ## [Macros](GUIDE-macros.md)
 
-Create and use macros for your `START_PRINT` and `END_PRINT` gcode commands
+Create and use macros for your `START_PRINT` and `END_PRINT` gcode commands.
 
-## [Useful Links](GUIDE-links.md)
+## [Advanced Macro Techniques](GUIDE-variables.md) (WIP)
 
-A collection of helpful links for Klipper users
+Learn more advanced techniques you can use in your macros. This guide will cover parameters, variables and types, gcode_variables, persistant_variables, the printer object, delayed_gcode, and more.
+
+__This guide is still incomplete and unfinished.__
+
+__Some sections are missing and others may contain typos or errors.__
+
+## [USB Pico Setup](GUIDE-usb-pico.md)
+
+Set up a USB-connected Pico (or any RP2040 board) as a secondary mcu. Covers compiling, flashing, configuring in Klipper, and some extras!
 
 ## [CANbus your Pico](Guide-pico_can.md)
 
-How to use an SKR-Pico (or any Pico board) as both a CANbus bridge *and* a Klipper mcu.
+Use an SKR-Pico (or any Pico/RP2040 board) as both a CANbus bridge *and* a Klipper mcu.
+
+## [Useful Links](GUIDE-links.md)
+
+A collection of helpful links for Klipper users.

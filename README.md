@@ -53,21 +53,23 @@ Additionally, this config now utilizes:
 
 ## Guides
 
-If you are looking for guides on calibrating or setting up a new Klipper printer, those are here: [Guides](guides/README.md)
+If you are looking for guides on calibrating or setting up a new Klipper printer, those are found here:
+
+#### [Zippy Guides](guides/README.md)
 
 ## Warnings
 
-### This is still very, very much a work in progress
+### This is still (and likely always will be) very, very much a work in progress
 
-I'm working on, breaking, changing, and using this daily! I strongly suggest nobody use this for anything more than reference/inspiration at this time.
+I'm working on, breaking, changing, and using this daily! I strongly suggest nobody use this full config for anything more than reference/inspiration at this time.
 
 It is likely to fail/crash on your system in its current state!
 
-Many of these macros work as great examples of using scripting and other Klipper features to perform different tasks. 
+Many of these macros work as great examples of using scripting and other Klipper features to perform different tasks.
 
-Many may even work on your printer as-is. 
+Many may even work on your printer as-is.
 
-But a lot of them won't. 
+But a lot of them won't.
 
 So consider this more of a selection of examples that will likely need to be tailored to fit your unique system. Use it as a resource to see how you *could* do something, not necessarily how you **should**. Feel free to message me with questions if you have them.
 
