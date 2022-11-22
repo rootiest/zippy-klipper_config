@@ -162,12 +162,14 @@ The process to do so is similar to what you'd call "baby-stepping" on Marlin.
 If you don't have some manner of control interface to perform the baby-stepping, you can use gcode commands:
 
     # Move the z-axis offset 0.2mm higher
-    SET_GCODE_OFFSET Z=0.2
+    SET_GCODE_OFFSET Z=0.2 MOVE=1
     
     # Move the z-axis offset 0.3mm lower
-    SET_GCODE_OFFSET Z=-0.3
+    SET_GCODE_OFFSET Z=-0.3 MOVE=1
 
 Reference: [SET_GCODE_OFFSET](https://www.klipper3d.org/G-Codes.html#set_gcode_offset)
+
+> Note: It's important to include the `MOVE=1` as that tells Klipper to apply the offset immediately instead of at the next Z-axis move.
 
 Then use the following commands after the print completes to save the offset to your config:
 
