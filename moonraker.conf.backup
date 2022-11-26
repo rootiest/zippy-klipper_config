@@ -1,0 +1,224 @@
+[server]
+host: 0.0.0.0
+port: 7125
+enable_debug_logging: False
+
+[authorization]
+force_logins: True
+cors_domains:
+  *.local
+  *.lan
+  *://app.fluidd.xyz
+  https://my.mainsail.xyz
+  http://my.mainsail.xyz
+  http://*.local
+
+trusted_clients:
+  10.0.0.0/8
+  127.0.0.0/8
+  169.254.0.0/16
+  172.16.0.0/12
+  192.168.0.0/16
+  FE80::/10
+  ::1/128
+
+
+[file_manager]
+enable_object_processing: True
+queue_gcode_uploads: True
+config_path: /home/pi/klipper_config
+log_path: ~/klipper_logs
+
+[secrets]
+secrets_path: ~/klipper_config/moonraker_secrets.ini
+
+[data_store]
+temperature_store_size: 2400
+gcode_store_size:  2000
+
+
+[job_queue]
+load_on_startup: True
+  
+[mqtt]
+address: 192.168.86.210
+username: {secrets.mqtt_credentials.username}
+password: {secrets.mqtt_credentials.password}
+enable_moonraker_api: True
+status_objects:
+  webhooks
+  toolhead=position,homed_axes
+  extruder=temperature,target
+  heater_bed=temperature,target
+  chamber=temperature
+  spool=temperature
+  print_stats
+  filament_sensor
+
+# enables partial support of Octoprint API
+[octoprint_compat]
+
+# enables moonraker to track and store print history.
+[history]
+
+# allows timelapse functionality
+[timelapse]
+
+# this enables moonraker's update manager
+[update_manager]
+enable_auto_refresh: True
+channel: dev
+
+# this enabled fluidd updates
+[update_manager client fluidd]
+type: web
+channel: beta
+repo: cadriel/fluidd
+path: ~/fluidd
+
+# this enabled mainsail updates
+[update_manager mainsail]
+type: web
+channel: beta
+repo: mainsail-crew/mainsail
+path: ~/mainsail
+
+# Manage updates for KlipperScreen
+[update_manager KlipperScreen]
+type: git_repo
+channel: dev
+path: ~/KlipperScreen
+origin: https://github.com/jordanruthe/KlipperScreen.git
+env: ~/.KlipperScreen-env/bin/python
+requirements: scripts/KlipperScreen-requirements.txt
+install_script: scripts/KlipperScreen-install.sh
+managed_services: KlipperScreen
+
+# Manage updates for moonraker-telegram
+[update_manager client moonraker-telegram]
+type: git_repo
+channel: dev
+path: /home/pi/moonraker-telegram
+origin: https://github.com/Raabi91/moonraker-telegram.git
+env: /home/pi/.moonraker-telegram-env/bin/python
+requirements: scripts/moonraker-telegram-requirements.txt
+install_script: scripts/install.sh
+
+# Manage updates for moonraker-telegram-bot
+#[update_manager client moonraker-telegram-bot]
+#type: git_repo
+#channel: dev
+#path: ~/moonraker-telegram-bot
+#origin: https://github.com/nlef/moonraker-telegram-bot.git
+#env: ~/moonraker-telegram-bot-env/bin/python
+#requirements: scripts/requirements.txt
+#install_script: scripts/install.sh
+
+[include moonraker-obico-update.cfg]
+
+# Manage updates for MoonCord
+[update_manager client MoonCord]
+type: git_repo
+channel: dev
+path: /home/pi/mooncord
+origin: https://github.com/eliteschwein/mooncord.git
+install_script: scripts/install.sh
+enable_node_updates: True
+
+# Manage updates for moonraker-timelapse
+[update_manager timelapse]
+type: git_repo
+channel: dev
+primary_branch: main
+path: ~/moonraker-timelapse
+origin: https://github.com/mainsail-crew/moonraker-timelapse.git
+managed_services: klipper moonraker
+
+# Manage updates for klipper-led-effect
+[update_manager led_effect]
+type: git_repo
+path: ~/klipper-led_effect
+origin: https://github.com/julianschill/klipper-led_effect.git
+is_system_service: False
+
+# Manage updates for print_area_bed_mesh macro
+[update_manager print_area_bed_mesh]
+type: git_repo
+path: ~/print_area_bed_mesh
+origin: https://github.com/Turge08/print_area_bed_mesh.git
+is_system_service: False
+
+# Manage updates for the Rootiest ZippyPrint Configs
+[update_manager ZippyPrint]
+type: git_repo
+channel: dev
+primary_branch: main
+path: ~/klipper_config
+origin: https://github.com/rootiest/zippy-klipper_config.git
+is_system_service: False
+managed_services: klipper moonraker
+#persistent_files: printer.cfg
+info_tags:
+  desc=Rootiest Klipper Config for ZippyPrint Printer
+
+# Manage LED Strips
+[wled Lighting]
+type: http
+address: 192.168.86.48
+initial_preset: 1
+chain_count: 56
+
+# Master power toggle for printer
+[power Printer]
+type: tasmota
+address: 192.168.86.36
+off_when_shutdown: True
+off_when_shutdown_delay: 15
+locked_while_printing: True
+on_when_job_queued: True
+restart_klipper_when_powered: True
+restart_delay: 2
+bound_service: klipper
+
+# Power toggle for air purifier
+[power Nevermore]
+type: klipper_device
+object_name: output_pin nevermore_filter
+
+# Power toggle for air purifier
+[power Filter]
+type: tasmota
+address: 192.168.86.28
+off_when_shutdown: True
+off_when_shutdown_delay: 300
+locked_while_printing: False
+on_when_job_queued: True
+
+# Power toggle for LED Strips
+[power Lights]
+type: mqtt
+command_topic: wled/wled-3d
+command_payload:
+    {% if command == "on" %}
+        ON
+    {% else %}
+        OFF
+    {% endif %}
+retain_command_state: True
+query_after_command: False
+off_when_shutdown: True
+off_when_shutdown_delay: 0
+on_when_job_queued: True
+state_topic: wled/wled-3d/g
+state_response_template:
+    {% set resp = payload|int %}
+    {% if resp > 0 %}
+        ON
+    {% else %}
+        OFF
+    {% endif %}
+
+[power Master]
+type: klipper_device
+object_name: gcode_macro POWEROFF
+locked_while_printing: True
