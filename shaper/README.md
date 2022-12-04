@@ -19,6 +19,23 @@
 
 # ADXL_SHAPER
 
+These macros are meant to simplify and automate the shaper calibration process.
+
+They performs the following steps:
+
+- Home the printer (if needed)
+- Calibrate the shapers
+- Generate the graph images
+- Save the recommended shaper settings to your config
+
+## WARNING
+
+### __Please use the [public ADXL_SHAPER version](../extras/shaper/README.md) instead.__
+
+This is my personal configuration of these macros.
+
+My configuration depends upon several macros that exist elsewhere in my config and will throw errors on other printers.
+
 ## Installation
 
 ### Prerequisites
@@ -31,7 +48,7 @@ The easiest way to do so is using [KIAUH](https://github.com/th33xitus/kiauh).
 
 Next create a `shaper` folder in your `~printer_data/config` directory.
 
-Download the following to that `~printer_data/config/shaper` directory:
+Download the following to that `~printer_data/config/shaper/` directory:
 
 - [ADXL_SHAPER.cfg](ADXL_SHAPER.cfg)
 - [adxl_shape_x.sh](adxl_shape_x.sh)
@@ -57,3 +74,10 @@ Add the following line to your `printer.cfg` file near the top:
 
 ## Usage
 
+Simply run one of the following:
+
+- `ADXL_SHAPE_ALL` to calibrate both axis
+- `ADXL_SHAPE_X` to calibrate only the X axis
+- `ADXL_SHAPE_Y` to calibrate only the Y axis
+
+No parameters are needed.
