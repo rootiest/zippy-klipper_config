@@ -22,6 +22,7 @@
 ### Written with the assistance of an AI ###
 ############################################
 
+
 # Check if the required number of arguments have been provided
 if [ $# -ne 1 ]
 then
@@ -30,7 +31,17 @@ then
 fi
 
 # Assign the argument to a variable
-replace_string=$1
+tool_number=$1
+
+# Check if the input parameter is a valid integer
+if ! [[ $tool_number =~ ^[0-9]+$ ]]
+then
+    echo "Error: Invalid input. Integer required."
+    exit 1
+fi
+
+# Construct the replacement string
+replace_string="[include tool$tool_number.cfg]"
 
 # Define the file to be searched
 filename=~/printer_data/config/printer.cfg
