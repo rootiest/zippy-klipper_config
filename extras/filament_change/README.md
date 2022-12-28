@@ -31,9 +31,51 @@ Post-runout the temperature is returned to the original printing temp so you don
 
 During manual filament changes this behavior is modified slightly to account for the fact that we aren't printing immediately before/after the filament change.
 
+# Contents
+
+- [Smart Filament Changes](#smart-filament-changes)
+- [Contents](#contents)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+  - [Filament Runouts](#filament-runouts)
+  - [Manual Filament Change](#manual-filament-change)
+  - [Manual Purging](#manual-purging)
+- [Additional Notes](#additional-notes)
+- [Final Notes](#final-notes)
+
+# Installation
+
+Simply download the following file:
+
+[smart-m600.cfg](smart-m600.cfg)
+
+and place it in your `~/printer_data/config` directory alongside your `printer.cfg` file.
+
+Then add this line to your `printer.cfg` file:
+
+    [include smart-m600.cfg]
+
+This will add the macros to your config.
+
+Make sure you also follow the rest of this guide to properly configure the macros!
+
 # Configuration
 
-You will need to configure the following variables:
+You will need to configure some variables to define the behavior of the macro.
+
+These are found in the `smart-m600.cfg` file under the following section:
+
+    ################################
+    ###### M600 CONFIGURATION ######
+    ################################
+    [gcode_macro _m600cfg]
+
+These variables will define everything the macro needs to know about how to operate on your machine.
+
+Nothing else will need to be changed.
+
+The variables are listed below with a description of the appropriate values:
 
     variable_default_temp: 220      # The default temperature used
 
