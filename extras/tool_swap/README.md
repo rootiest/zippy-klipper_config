@@ -21,7 +21,7 @@
 
 These macros allow you to swap configs with a single command.
 
-This works by changing the first line of your `printer.cfg` file.
+This works by changing a line of your `printer.cfg` file using a shell script.
 
 On that line, you would place an `[include]` that will tell Klipper which config to load.
 
@@ -41,9 +41,8 @@ Download the following to your `~printer_data/config/` directory:
 
 - [swap_tools.cfg](swap_tools.cfg)
 - [tool1.cfg](tool1.cfg)
-- [tool1.sh](tool1.sh)
-- [tool2.cfg](tool1.cfg)
-- [tool2.sh](tool2.sh)
+- [tool2.cfg](tool2.cfg)
+- [tool_swap_.sh](tool_swap.sh)
 
 ## Configuration
 
@@ -55,12 +54,10 @@ Place the configs that will be swapped in into the `tool2.cfg` file
 
 ### Include Config
 
-Add the following two lines to the your `printer.cfg` file as ***the first two lines***:
+Add the following two lines to the your `printer.cfg` file:
 
     [include tool1.cfg]
     [include swap_tools.cfg]
-
-> Note: It's very important that the ***first*** lines of your printer.cfg file are as shown above.
 
 ## Usage
 
@@ -73,3 +70,15 @@ To swap to the first tool simply run:
     CHANGE_TOOL TOOL=1
 
 > NOTE: Remember that doing this requires a `FIRMWARE_RESTART`. Do not try to change tools during a print!
+
+## Updates
+
+As of `2022-12-28` this macro now uses a smarter shell script that no longer requires you to place the `[include]` line at the start of the file.
+
+It also no longer requires separate shell scripts for each tool, opting instead to use a regex pattern to detect any variation of tool1, tool2, tool3, tool5, tool420, etc in an `[include tool#.cfg]` line.
+
+This makes it easier to use the include line anywhere in the printer.cfg file you'd like as well as making it easy to support as many "tool" configs as you need.
+
+You can also simply edit the shell script to change the filename used if you'd like the `[include]` to be used in a different file than the base printer.cfg file.
+
+I was too lazy/inexperienced to write out the regex and scripting required to make these improvements when I wrote the original, so we can thank ChatGPT for doing the grunt-work required to introduce these QoL improvements!
