@@ -48,9 +48,9 @@ Download the following to your `~printer_data/config/` directory:
 
 ### Prerequisites
 
-Move the config sections that you wish to be swapped out into the `tool1.cfg` file.
+Move the config sections that you wish to be associated with "tool1" into the `tool1.cfg` file.
 
-Place the configs that will be swapped in into the `tool2.cfg` file
+Place the config sections that you wish to be associated with "tool2" into the `tool2.cfg` file.
 
 ### Include Config
 
