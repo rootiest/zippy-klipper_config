@@ -7,7 +7,6 @@ printer*.cfg
 variables.cfg
 mooncord.json
 resonances_*.csv
-KlipperScreen.conf
 moonraker-obico.cfg
 *shaper_calibrate_*.png
 */shaper_calibrate_*.png
