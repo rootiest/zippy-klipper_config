@@ -42,7 +42,7 @@ Download the following to your `~printer_data/config/` directory:
 - [swap_tools.cfg](swap_tools.cfg)
 - [tool1.cfg](tool1.cfg)
 - [tool2.cfg](tool2.cfg)
-- [tool_swap_.sh](tool_swap.sh)
+- [tool_swap.sh](tool_swap.sh)
 
 ## Configuration
 
