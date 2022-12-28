@@ -68,8 +68,10 @@ This is the length of filament to retract during the unload command. It should b
 
 This is the length to extrude when using the PURGE command. This command is used for extra purging if the color is especially slow to change over, or for other manual purging purposes.
 
-    # NOTE: Speeds are given in mm/min 
+-----
 
+    # NOTE: Speeds are given in mm/min 
+    
 NOTE: All of the speed variables used below are in mm/min.
 
     variable_fast_speed: 1000       # Speed for fast extruder moves (between extruder and hotend)
@@ -88,12 +90,17 @@ This is the speed used after the filament has reached the hotend during a filame
 
 This is the speed of X/Y moves during the parking actions.
 
+-----
 
-The following variables allow you to configure behavior of notifications and feedback:
+The following variable allows you to configure behavior of feedback:
 
     variable_output: 118            # Select 117 or 118 to specify output method for feedback
 
 This allows you to choose between `M117` (display status) or `M118` (console output) for feedback during filament changes. This is used to give feedback for each step of the process so you know it's working.
+
+-----
+
+The remaining three variables are used to enable optional notification macros:
 
     variable_led_status: False      # Use LED Status macros such as on the stealthburner
 
