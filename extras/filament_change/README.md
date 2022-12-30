@@ -42,6 +42,8 @@ During manual filament changes this behavior is modified slightly to account for
   - [Manual Filament Change](#manual-filament-change)
   - [Manual Purging](#manual-purging)
 - [Additional Notes](#additional-notes)
+- [Changelog](#changelog)
+  - [v1.9 2022-12-30](#v19-2022-12-30)
 - [Final Notes](#final-notes)
 
 # Installation
@@ -136,9 +138,17 @@ This is the speed of X/Y moves during the parking actions.
 
 The following variable allows you to configure behavior of feedback:
 
-    variable_output: 118            # Select 117 or 118 to specify output method for feedback
+    variable_output: 118            # Select 116, 117, or 118 to specify output method for feedback
 
 This allows you to choose between `M117` (display status) or `M118` (console output) for feedback during filament changes. This is used to give feedback for each step of the process so you know it's working.
+
+You can also enter `116` to use the "dummy" `M116` macro. This macro effectively silences all feedback from macros in this set.
+
+The choices are as follows:
+
+- `117` : Use the `M117` command to output status feedback to the display.
+- `118` : Use the `M118` command to output status feedback to the console/terminal.
+- `116` : Use the `M116` command to disable/silence all status feedback.
 
 -----
 
@@ -155,7 +165,11 @@ This option enables support for the following macros which are used for LED feed
 - `STATUS_BUSY`     Printer busy
 - `STATUS_READY`    Printer ready
   
-Some of the macros are found in the stealthburner led configs, but I have added a few extras specific to filament changes. These macros simply activate lighting profiles.
+Some of the macros are found in [the stealthburner led configs](https://github.com/VoronDesign/Voron-Stealthburner/blob/main/Firmware/stealthburner_leds.cfg), but I have added a few extras specific to filament changes. These macros simply activate lighting profiles.
+
+You will need to already have these macros or create them yourself. The stealthburner config linked above contains most of them, but you will need to create a few additional. Use the existing ones as a template.
+
+-----
 
     variable_audio_status: False    # Use audio feedback macros
 
@@ -165,9 +179,36 @@ This relies on only one macro:
 
 - `CHANGE_TUNE` Plays a short notification tone
 
+Here is an example:
+
+    [gcode_macro change_tune]
+    description: Change filament tune
+    gcode:
+        M300 S440 P200
+        M300 S660 P250
+        M300 S880 P300
+
+The macro should play a tone that is short enough to be suitable for repeating approximately every 5 seconds. Feel free to experiment and come up with your own tones!
+
 This tone is used to indicate that a load/unload has completed.
 
-It also uses a repeating delayed_gcode macro to repeat this tone every 5 seconds to notify the user of a filament runout.
+It also uses a repeating delayed_gcode macro to repeat this tone to notify the user of a filament runout.
+
+    variable_audio_freq: 5          # The frequency to repeat the audio tone
+
+This variable specifies how frequently to replay the indicator tone set by the previous variable.
+
+The value is given in seconds, with a default of 5 seconds.
+
+    variable_audio_macro: 'CHANGE_TUNE' # The frequency to repeat the audio tone
+
+This variable specifies the macro name for the audio notification. By default it uses `CHANGE_TUNE` which is compatible with the example macro shown in the `variable_audio_status` section.
+
+However, this option allows you to specify a different macro to customize this behavior. 
+
+The macro specified here will be executed by the audio status notifications. It will also be repeatedly executed at a frequency specified by the previous variable.
+
+-----
 
     variable_use_telegram: False    # Use Telegram feedback macros
 
@@ -256,6 +297,18 @@ All of these macros also support several parameters that allow you to set specif
 - `LENGTH` Allows you to override the length used in the `PURGE` and `UNLOAD_FILAMENT` macros.
 - `FAST` Allows you to override the "fast" length for the `LOAD_FILAMENT` macro
 - `SLOW` Allows you to override the "slow" length for the `LOAD_FILAMENT` macro
+
+# Changelog
+
+## v1.9 2022-12-30
+
+- Added configuration variables for `audio_macro` and `audio_freq`.
+- `audio_freq` allows the user to configure the frequency at which the audio notifications are repeated to notify a runout has occurred.
+- `audio_macro` allows the user to specify a custom macro to be executed for audio notifications.
+- Added a `116` option for status notifications via the `output` variable. This allows the user to silence/disable those status updates. An empty `M116` macro has been included to facilitate this.
+- An example audio tone macro has been added to the README.
+- Additional details and a link have been added to the README section for `led_status`
+- Other minor corrections and formatting adjustments made to the documentation.
 
 # Final Notes
 
