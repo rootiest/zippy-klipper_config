@@ -41,9 +41,13 @@ During manual filament changes this behavior is modified slightly to account for
   - [Filament Runouts](#filament-runouts)
   - [Manual Filament Change](#manual-filament-change)
   - [Manual Purging](#manual-purging)
+  - [Toggling Filament Sensing](#toggling-filament-sensing)
 - [Additional Notes](#additional-notes)
+  - [Parameters](#parameters)
+  - [Additional Steps](#additional-steps)
 - [Changelog](#changelog)
   - [v1.9 2022-12-30](#v19-2022-12-30)
+  - [v2.0 2023-1-1](#v20-2023-1-1)
 - [Final Notes](#final-notes)
 
 # Installation
@@ -75,9 +79,23 @@ These are found in the `smart-m600.cfg` file under the following section:
 
 These variables will define everything the macro needs to know about how to operate on your machine.
 
-Nothing else will need to be changed.
+Nothing else will need to be changed <sup>[*](#additional-steps)
 
-The variables are listed below with a description of the appropriate values:
+The configuration variables are listed below with a description of the appropriate values:
+
+    variable_sensor_name: 'filament_sensor' # The name of the filament sensor used
+
+Here you will enter the name given to your filament sensor.
+
+A common name is `filament_sensor`. You can find this name in your configuration where the filament sensor is defined. Examples can be found at the end of [the smart-m600.cfg file](smart-m600.cfg).
+
+In the examples shown, the name used is `filament_sensor`. You can see where that is specified in the snippet below:
+
+`[filament_switch_sensor filament_sensor]`
+
+Simply set this to the name you use in your configuration for the filament sensor.
+
+-----
 
     variable_default_temp: 220      # The default temperature used
 
@@ -218,6 +236,29 @@ This option enables the following macro:
 
 This macro is used to send a notification via the telegram extension in order to indicate a filament runout
 
+-----
+
+    variable_auto_sensor: False             # Automate filament sensor toggling
+
+This variable enables the *optional* feature that disables the filament sensor outside of prints.
+
+This feature is disabled by default.
+
+Unlike any other function of these macros, this one requires an additional step beyond just setting the variable to `True`.
+
+In order to use this feature, you ***must*** add the following to your `START_PRINT` macro:
+
+`ENABLEFILAMENTSENSOR`
+
+You also may want to add the following to your `END_PRINT` macro:
+
+`DISABLEFILAMENTSENSOR`
+
+The result of making those changes and setting this variable to `True` is that the filament sensor will not trigger outside of prints.
+
+This is a convenient way to prevent accidental triggering when performing maintenance and other pre/post-print tasks.
+
+The sensor will also be enabled briefly after filament unloading to facilitate automated loading when the sensor detects the new filament.
 # Usage
 
 This macro can be used in a few ways as described below:
@@ -289,7 +330,25 @@ There is also a `PURGE` command included. This command will allow you to extrude
 
 To use this, simply run `PURGE`
 
+## Toggling Filament Sensing
+
+You can use the following commands to toggle the filament sensor on and off:
+
+`ENABLEFILAMENTSENSOR` : This command will enable the filament sensor, allowing it to respond to triggers.
+
+`DISABLEFILAMENTSENSOR` : This command will disable the filament sensor, preventing it from responding to triggers.
+
+> NOTE: This requires that you properly define the `sensor_name` variable so the macros know what sensor to control.
+
+These commands also accept a `SENSOR` parameter that allows you to override the name of the sensor being controlled. If the parameter is not specified then the configured `sensor_name` will be used.
+
+To automate this sensor-toggling process, enable the `auto_sensor` variable and add the companion commands to your `START_PRINT` and `END_PRINT` macros as outlined in the documentation above.
+
+The `auto_sensor` cannot accept a parameter, so only the configured `sensor_type` will be automatically controlled.
+
 # Additional Notes
+
+## Parameters
 
 All of these macros also support several parameters that allow you to set specific behavior outside of the defaults you configure in the variables.
 
@@ -297,6 +356,29 @@ All of these macros also support several parameters that allow you to set specif
 - `LENGTH` Allows you to override the length used in the `PURGE` and `UNLOAD_FILAMENT` macros.
 - `FAST` Allows you to override the "fast" length for the `LOAD_FILAMENT` macro
 - `SLOW` Allows you to override the "slow" length for the `LOAD_FILAMENT` macro
+-  `SENSOR` Allows you to override the sensor being controlled by the `ENABLEFILAMENTSENSOR` and `DISABLEFILAMENTSENSOR` macros
+
+## Additional Steps
+
+Virtually all of this macro package can be used without making any modifications to your existing configuration. Instead, they rely on the variables to configure their behavior.
+
+There is one exception to this however:
+
+When using the automated sensor toggling via the `auto_sensor`, you must add a command to your `START_PRINT` and `END_PRINT` macros.
+
+This change is described above in the documentation for that `auto_sensor` variable, but the necessary changes will also be listed below:
+
+Near/at the end of your `START_PRINT` macro, just before the print begins, add the following:
+
+    ENABLEFILAMENTSENSOR
+
+Near/at the end of your `END_PRINT` macro add the following:
+
+    DISABLEFILAMENTSENSOR
+
+This will ensure the sensor is enabled at the start of prints and then disabled again after the print completes. This works in concert with a delayed_gcode macro that disables the sensor at startup.
+
+This helps to prevent accidental triggering outside of prints when performing maintenance and other tasks.
 
 # Changelog
 
@@ -309,6 +391,15 @@ All of these macros also support several parameters that allow you to set specif
 - An example audio tone macro has been added to the README.
 - Additional details and a link have been added to the README section for `led_status`
 - Other minor corrections and formatting adjustments made to the documentation.
+
+## v2.0 2023-1-1
+
+- Added automated filament sensor toggling. This keeps the sensor disabled outside of prints.
+- Added macros for toggling filament sensing on/off. This is a companion to the automated sensing.
+- This also addresses a bug in the previous version where the `ENABLEFILAMENTSENSOR` command was used without being defined. Thanks [Peviox](https://github.com/Peviox)
+- Added `[display_status]` in case the user is missing that section.
+- Fixed `HOME_IF_NEEDED` to use the `output` variable.
+- Various organization and documentation improvements
 
 # Final Notes
 
