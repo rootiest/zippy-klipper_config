@@ -46,8 +46,8 @@ During manual filament changes this behavior is modified slightly to account for
   - [Parameters](#parameters)
   - [Additional Steps](#additional-steps)
 - [Changelog](#changelog)
-  - [v1.9 2022-12-30](#v19-2022-12-30)
   - [v2.0 2023-1-1](#v20-2023-1-1)
+  - [v1.9 2022-12-30](#v19-2022-12-30)
 - [Final Notes](#final-notes)
 
 # Installation
@@ -381,7 +381,14 @@ This will ensure the sensor is enabled at the start of prints and then disabled 
 This helps to prevent accidental triggering outside of prints when performing maintenance and other tasks.
 
 # Changelog
+## v2.0 2023-1-1
 
+- Added automated filament sensor toggling. This keeps the sensor disabled outside of prints.
+- Added macros for toggling filament sensing on/off. This is a companion to the automated sensing.
+- This also addresses a bug in the previous version where the `ENABLEFILAMENTSENSOR` command was used without being defined. Thanks [Peviox](https://github.com/Peviox)
+- Added `[display_status]` in case the user is missing that section.
+- Fixed `HOME_IF_NEEDED` to use the `output` variable.
+- Various organization and documentation improvements
 ## v1.9 2022-12-30
 
 - Added configuration variables for `audio_macro` and `audio_freq`.
@@ -391,16 +398,6 @@ This helps to prevent accidental triggering outside of prints when performing ma
 - An example audio tone macro has been added to the README.
 - Additional details and a link have been added to the README section for `led_status`
 - Other minor corrections and formatting adjustments made to the documentation.
-
-## v2.0 2023-1-1
-
-- Added automated filament sensor toggling. This keeps the sensor disabled outside of prints.
-- Added macros for toggling filament sensing on/off. This is a companion to the automated sensing.
-- This also addresses a bug in the previous version where the `ENABLEFILAMENTSENSOR` command was used without being defined. Thanks [Peviox](https://github.com/Peviox)
-- Added `[display_status]` in case the user is missing that section.
-- Fixed `HOME_IF_NEEDED` to use the `output` variable.
-- Various organization and documentation improvements
-
 # Final Notes
 
 This may seem a bit overwhelming or complicated at first, but if you've ever wanted something more than what the common `M600` macros provide, this is for you!
