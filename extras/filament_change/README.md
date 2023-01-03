@@ -46,6 +46,7 @@ During manual filament changes this behavior is modified slightly to account for
   - [Parameters](#parameters)
   - [Additional Steps](#additional-steps)
 - [Changelog](#changelog)
+  - [v2.0.1 2023-1-3](#v201-2023-1-3)
   - [v2.0 2023-1-1](#v20-2023-1-1)
   - [v1.9 2022-12-30](#v19-2022-12-30)
 - [Final Notes](#final-notes)
@@ -381,6 +382,10 @@ This will ensure the sensor is enabled at the start of prints and then disabled 
 This helps to prevent accidental triggering outside of prints when performing maintenance and other tasks.
 
 # Changelog
+
+## v2.0.1 2023-1-3
+
+- Minor bug fix to repair `coldstart` feature. This should hopefully prevent runouts from ever being triggered during manual filament changes.
 ## v2.0 2023-1-1
 
 - Added automated filament sensor toggling. This keeps the sensor disabled outside of prints.
