@@ -22,3 +22,113 @@
 These macros manage behavior for starting, ending, and canceling prints.
 
 They also support layer-specific triggers.
+
+The purpose of these macros should be familiar to anyone who has used a `START_PRINT` or similar macro in Klipper before.
+
+The method by which we achieve that result is somewhat different however.
+
+## Contents
+
+- [Print Management Macros](#print-management-macros)
+  - [Contents](#contents)
+  - [Installation](#installation)
+  - [Configuration](#configuration)
+  - [Using](#using)
+    - [How it works](#how-it-works)
+    - [START\_PRINT Macro](#start_print-macro)
+    - [END\_PRINT Macro](#end_print-macro)
+    - [CANCEL\_PRINT Macro](#cancel_print-macro)
+    - [Working with Layers](#working-with-layers)
+      - [Tracking Layer Changes](#tracking-layer-changes)
+      - [Scheduling Layer Events](#scheduling-layer-events)
+  
+## Installation
+
+> Describe steps to install macros onto Klipper
+## Configuration
+
+Get ready to see a lot of `SET_GCODE_VARIABLE`!
+
+Unlike the common `START_PRINT` macro format, we aren't using a set of parameters to pass information from the slicer.
+
+Instead we will use the `SET_GCODE_VARIABLE` commands to pass variables from the slicer and our macros will reference those.
+
+Configuration of these macros will consist of adjusting some default values and adding some code to the slicer's custom gcode fields.
+
+## Using
+
+Using these macros will require adding/changing some gcode in the slicer's custom gcode sections as well as configuring the default values for several variables.
+
+### How it works
+
+These macros use gcode variables extensively, allowing for easy and deep configuration of all parts of the macro's behavior.
+
+Most of these variables will be, or will need to be, configured to default values that won't need to change once set.
+
+The rest will be set by the slicer and represent values that we traditionally would have used parameters for.
+
+> NOTES: 
+> 
+> Using parameters the traditional way is also still supported for some basic functions. However, parameters are no longer *required*.
+>
+> Although most variables won't *need* to be configured after the initial configuration, they all still *can* be set to new values at any time, even during the print!
+
+Here is an example of the type of thing we are looking to avoid:
+
+This is a SuperSlicer `START_PRINT` call for a fairly complex printer build:
+
+    start_print EXTRUDER={first_layer_temperature[initial_extruder] + extruder_temperature_offset[initial_extruder]} BED={first_layer_bed_temperature[initial_extruder]} CHAMBER={chamber_temperature} MATERIAL={filament_type} COUNT={total_layer_count} TOOLS={total_toolchanges} FILTER=1 PRINT_MIN={first_layer_print_min[0]},{first_layer_print_min[1]} PRINT_MAX={first_layer_print_max[0]},{first_layer_print_max[1]} COLOUR={filament_colour}
+
+This is all one line!
+
+On the one hand, it's great to get all of that data from the slicer into Klipper. But this many parameters starts to become very messy and unwieldy.
+
+Here is how the above example would work in this new format:
+
+    SET_GCODE_VARIABLE MACRO=_printcfg VARIABLE=extruder_temp VALUE={first_layer_temperature[initial_extruder] + extruder_temperature_offset[initial_extruder]}
+    SET_GCODE_VARIABLE MACRO=_printcfg VARIABLE=bed_temp VALUE={first_layer_bed_temperature[initial_extruder]}
+    SET_GCODE_VARIABLE MACRO=_printcfg VARIABLE=chamber_temp VALUE={chamber_temperature}
+    SET_GCODE_VARIABLE MACRO=_printcfg VARIABLE=material_type VALUE={filament_type}
+    SET_GCODE_VARIABLE MACRO=_printcfg VARIABLE=material_color VALUE={filament_colour}
+    SET_GCODE_VARIABLE MACRO=_printcfg VARIABLE=layer_count VALUE={total_layer_count}
+    SET_GCODE_VARIABLE MACRO=_printcfg VARIABLE=tool_count VALUE={total_toolchanges}
+    SET_GCODE_VARIABLE MACRO=_printcfg VARIABLE=nevermore VALUE=True
+    START_PRINT
+
+This may not seem a lot simpler, but it allows us to bring as much or as little information in from the slicer without needing to worry about fitting each parameter in to one big line.
+
+A simpler/more common example might be:
+
+This old `START_PRINT` call:
+
+    start_print BED_TEMP={first_layer_bed_temperature} EXTRUDER_TEMP={first_layer_temperature[initial_extruder] + extruder_temperature_offset[initial_extruder]}
+
+and in the new format:
+
+    SET_GCODE_VARIABLE MACRO=_printcfg VARIABLE=extruder_temp VALUE={first_layer_temperature[initial_extruder] + extruder_temperature_offset[initial_extruder]}
+    SET_GCODE_VARIABLE MACRO=_printcfg VARIABLE=bed_temp VALUE={first_layer_bed_temperature[initial_extruder]}
+    START_PRINT
+
+As you can see, there is some minor improvements in readability. The real benefits are below the surface however.
+
+Most users will be able to just use a default set of `SET_GCODE_VARIABLE` commands to match their slicer, and any values unique to your machine can be set in the configuration.
+### START_PRINT Macro
+
+> Describe macro features and steps to use
+
+### END_PRINT Macro
+
+> Describe macro features and steps to use
+### CANCEL_PRINT Macro
+
+> Describe macro features and steps to use
+### Working with Layers
+
+> Describe how these macros are able to work with layers
+#### Tracking Layer Changes
+
+> Describe `LAYER_CHANGE` macro features and steps to use
+
+#### Scheduling Layer Events
+
+> Describe `SCHEDULE_LAYER` macro features and steps to use
