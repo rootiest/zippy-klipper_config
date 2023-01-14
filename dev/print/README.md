@@ -127,7 +127,15 @@ However, this also opens the door for changing any of the values at any time usi
 
 #### Breakdown the purpose of individual parts:
 
-> HEAT_SURFACE, PREP_CHAMBER, PREP_FANS, PREP_SURFACE, PREP_EXTRUDER
+> HEAT_SURFACE
+> 
+> PREP_CHAMBER: Will include optional heat-soak process
+> 
+> PREP_FANS
+> 
+> PREP_SURFACE
+> 
+> PREP_EXTRUDER
 
 ### END_PRINT Macro
 
