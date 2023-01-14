@@ -35,12 +35,17 @@ The method by which we achieve that result is somewhat different however.
   - [Configuration](#configuration)
   - [Using](#using)
     - [How it works](#how-it-works)
+  - [Macros](#macros)
     - [START\_PRINT Macro](#start_print-macro)
+      - [Breakdown the purpose of individual parts:](#breakdown-the-purpose-of-individual-parts)
     - [END\_PRINT Macro](#end_print-macro)
     - [CANCEL\_PRINT Macro](#cancel_print-macro)
     - [Working with Layers](#working-with-layers)
-      - [Tracking Layer Changes](#tracking-layer-changes)
-      - [Scheduling Layer Events](#scheduling-layer-events)
+    - [Filament Changes](#filament-changes)
+    - [Nozzle Cleaning](#nozzle-cleaning)
+    - [Adaptive Mesh and Purge](#adaptive-mesh-and-purge)
+    - [Idler](#idler)
+    - [Parking and Homing](#parking-and-homing)
   
 ## Installation
 
@@ -112,9 +117,17 @@ and in the new format:
 As you can see, there is some minor improvements in readability. The real benefits are below the surface however.
 
 Most users will be able to just use a default set of `SET_GCODE_VARIABLE` commands to match their slicer, and any values unique to your machine can be set in the configuration.
+
+However, this also opens the door for changing any of the values at any time using a simple SET_GCODE_VARIABLE command that can even be run manually from the console!
+
+## Macros
 ### START_PRINT Macro
 
 > Describe macro features and steps to use
+
+#### Breakdown the purpose of individual parts:
+
+> HEAT_SURFACE, PREP_CHAMBER, PREP_FANS, PREP_SURFACE, PREP_EXTRUDER
 
 ### END_PRINT Macro
 
@@ -125,10 +138,24 @@ Most users will be able to just use a default set of `SET_GCODE_VARIABLE` comman
 ### Working with Layers
 
 > Describe how these macros are able to work with layers
-#### Tracking Layer Changes
 
-> Describe `LAYER_CHANGE` macro features and steps to use
+### Filament Changes
 
-#### Scheduling Layer Events
+> Describe how these macros perform filament changes and address runouts
 
-> Describe `SCHEDULE_LAYER` macro features and steps to use
+### Nozzle Cleaning
+
+> Describe how the nozzle brush macro works
+
+### Adaptive Mesh and Purge
+
+> We are using a modified version of [this project](https://github.com/kyleisah/Klipper-Adaptive-Meshing-Purging)
+
+### Idler
+
+> The Idler macros allow changing the idle_timeout behavior as well as time, even during a print.
+
+### Parking and Homing
+
+> Allow parking and homing to use our configuration variables
+
