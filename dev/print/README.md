@@ -118,7 +118,7 @@ As you can see, there is some minor improvements in readability. The real benefi
 
 Most users will be able to just use a default set of `SET_GCODE_VARIABLE` commands to match their slicer, and any values unique to your machine can be set in the configuration.
 
-However, this also opens the door for changing any of the values at any time using a simple SET_GCODE_VARIABLE command that can even be run manually from the console!
+However, this also opens the door for changing any of the values at any time using a simple `SET_GCODE_VARIABLE` command that can even be run manually from the console!
 
 ## Macros
 ### START_PRINT Macro
