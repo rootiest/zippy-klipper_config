@@ -81,3 +81,7 @@ Simply run one of the following:
 - `ADXL_SHAPE_Y` to calibrate only the Y axis
 
 No parameters are needed.
+
+# Credits
+
+This project was designed by [Peviox](https://github.com/Peviox) and shared here with his permission.
