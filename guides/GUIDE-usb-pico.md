@@ -188,18 +188,18 @@ If you have multiple accelerometers that will look something like this:
     probe_points:
         100,100,20 # an example
 
-The `probe_points` value is the X,Y,Z coordinates where you would like the test to occur. You can also test in multiple locations by adding additional coordinates on a new line below. For example:
-
-    probe_points:
-        100,100,20 # an example
-        50,50,100  # another example
-
 If you have only a single accelerometer, it will look more like this:
 
     [resonance_tester]
     accel_chip: adxl345
     probe_points:
         100,100,20 # an example
+
+The `probe_points` value is the X,Y,Z coordinates where you would like the test to occur. You can also test in multiple locations by adding additional coordinates on a new line below. For example:
+
+    probe_points:
+        100,100,20 # an example
+        50,50,100  # another example
 
 [This is a fantastic resource if you want more information on setting up an accelerometer.](https://klipper.discourse.group/t/raspberry-pi-pico-adxl345-portable-resonance-measurement/1757)
 ## Useful Extras
