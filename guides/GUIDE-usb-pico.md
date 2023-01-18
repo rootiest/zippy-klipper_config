@@ -17,6 +17,29 @@
  along with zippy_config.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
+# Contents
+
+- [Contents](#contents)
+- [Flashing a Pico for USB](#flashing-a-pico-for-usb)
+  - [Compiling the firmware](#compiling-the-firmware)
+  - [Flashing the firmware](#flashing-the-firmware)
+  - [Retrieving the ID](#retrieving-the-id)
+  - [Configuring Klipper](#configuring-klipper)
+  - [Adding an accelerometer](#adding-an-accelerometer)
+  - [Useful Extras](#useful-extras)
+    - [MCU Core Temperature](#mcu-core-temperature)
+      - [Configure MCU Core Temperature](#configure-mcu-core-temperature)
+      - [Using MCU Core Temperature](#using-mcu-core-temperature)
+    - [Neopixel LED](#neopixel-led)
+      - [Configure Neopixel LED](#configure-neopixel-led)
+      - [Control Neopixel LED](#control-neopixel-led)
+      - [Configure Neopixel Enable Pin](#configure-neopixel-enable-pin)
+    - [Static LED](#static-led)
+      - [Configure Static LED](#configure-static-led)
+      - [Control Static LED](#control-static-led)
+    - [Organizing your config](#organizing-your-config)
+    - [Useful Links](#useful-links)
+
 # Flashing a Pico for USB
 
 This guide will walk you through compiling and flashing Klipper firmware on a USB Pico board. This process will work for any RP2040-based boards.
@@ -130,6 +153,51 @@ If you are able to successfully start/connect Klipper with that section added to
 
 You can now try adding some extras as described below:
 
+## Adding an accelerometer
+
+You can wire up an accelerometer like an ADXL345 to a Pico for use in Klipper.
+
+Here is an example:
+
+    [adxl345 my_accel]
+    cs_pin: my_pico: gpio1
+    spi_software_sclk_pin: my_pico: gpio2
+    spi_software_mosi_pin: my_pico: gpio3
+    spi_software_miso_pin: my_pico: gpio4
+
+Then you just wire up the corresponding pins on the accelerometer to the gpio pins. The pins you use may be different depending on the model of Pico you have.
+
+I try to use the existing SPI bus, but as shown in the example above, you can just specify the pins you want to use and it doesn't matter what their original purpose was.
+
+If you only have the one accelerometer, you do not need to name it. You can just use:
+
+    [adxl345]
+
+instead of:
+
+    [adxl345 my_accel]
+
+
+You will then need to add a resonance_tester section.
+
+If you have multiple accelerometers that will look something like this:
+
+    [resonance_tester]
+    accel_chip_x: adxl345 my_other_accel
+    accel_chip_y: adxl345 my_accel
+    probe_points:
+    100,100,20 # an example
+
+The `probe_points` value is the X,Y,Z coordinates where you would like the test to occur.
+
+If you have only a single accelerometer, it will look more like this:
+
+    [resonance_tester]
+    accel_chip: adxl345
+    probe_points:
+        100,100,20 # an example
+
+[This is a fantastic resource if you want more information on setting up an accelerometer.](https://klipper.discourse.group/t/raspberry-pi-pico-adxl345-portable-resonance-measurement/1757)
 ## Useful Extras
 
 ### MCU Core Temperature
