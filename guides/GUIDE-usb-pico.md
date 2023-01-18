@@ -186,9 +186,13 @@ If you have multiple accelerometers that will look something like this:
     accel_chip_x: adxl345 my_other_accel
     accel_chip_y: adxl345 my_accel
     probe_points:
-    100,100,20 # an example
+        100,100,20 # an example
 
-The `probe_points` value is the X,Y,Z coordinates where you would like the test to occur.
+The `probe_points` value is the X,Y,Z coordinates where you would like the test to occur. You can also test in multiple locations by adding additional coordinates on a new line below. For example:
+
+    probe_points:
+        100,100,20 # an example
+        50,50,100  # another example
 
 If you have only a single accelerometer, it will look more like this:
 
