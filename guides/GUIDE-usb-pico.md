@@ -155,7 +155,7 @@ You can now try adding some extras as described below:
 
 ## Adding an accelerometer
 
-You can wire up an accelerometer like an ADXL345 to a Pico for use in Klipper.
+You can wire up an accelerometer like an [ADXL345](https://www.klipper3d.org/Config_Reference.html#adxl345) to a Pico for use in Klipper.
 
 Here is an example:
 
@@ -178,7 +178,7 @@ instead of:
     [adxl345 my_accel]
 
 
-You will then need to add a resonance_tester section.
+You will then need to add a [resonance_tester](https://www.klipper3d.org/Config_Reference.html#resonance_tester) section.
 
 If you have multiple accelerometers that will look something like this:
 
