@@ -161,11 +161,17 @@ Using these commands, adjust your nozzle height until you are about 100 microns 
 
 When you are happy with it (0 is actually 0) run `ACCEPT` followed by `SAVE_CONFIG`
 
-Some notes:
+Some notes on calibration:
 
 The `+` or `-` are necessary in the `TESTZ` commands! If you do `TESTZ Z=1` it will move the nozzle to what it currently thinks 1mm from the bed is. We use the `TESTZ Z=+1` and `TESTZ Z=-1` to move it +1 or -1 from the **current** position.
 
 Typically this is combined with "the paper test" where you use a sheet of paper (a standard printer paper is about 0.1mm thick) When you feel resistance from the nozzle pressing against the paper, that means you are about 0.1mm away from the bed. This way you don't have to actually contact the bed with the nozzle to do this calibration. (We need the exact 0 height, but obviously we never print that close to the bed or no filament would come out)
+
+> NOTE: The goal here is to get the nozzle to be literally resting on the bed at `Z=0`. Despite some confusion on this topic, `0` means directly touching the bed. That's ok because we ***never*** actually print at `Z=0`. We print the first layer at `Z=0+{first_layer_height}`.
+>
+> So yes, we really are aiming to calibrate it so that `Z=0` is nozzle just touching the bed, not so that the nozzle is one layer-height away from the bed. The slicer will manage the layer heights for you automatically.
+>
+> However, it's often easier to just get it close enough with the paper test (and a cold bed) Generally the expansion caused by heating the bed will make up the difference of your sheet of paper, but we can further refine the value during a print anyway (as shown below)
 
 When you run `TESTZ Z=-0.001` and other very small values then nozzle will life a little before lowering in a kind of bouncing motion. This often looks like it's hit a soft limit and not lowering, but it actually ***is*** still lowering. Klipper does this to get more precise movements and hopefully do less damage if it *does* hit the bed. The little bounce is normal, and it's still working! (You'll understand when you see it)
 
