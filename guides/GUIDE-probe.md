@@ -20,6 +20,22 @@
 
 # Probe Offsets
 
+## Contents
+
+- [Probe Offsets](#probe-offsets)
+  - [Contents](#contents)
+  - [References](#references)
+  - [Sample Config](#sample-config)
+    - [(Ender 3/etc) Creality 4.2.2 or 4.2.7:](#ender-3etc-creality-422-or-427)
+  - [Safe homing](#safe-homing)
+  - [Calibrating the probe offsets](#calibrating-the-probe-offsets)
+    - [X,Y offsets walkthrough:](#xy-offsets-walkthrough)
+    - [Z offset walkthrough:](#z-offset-walkthrough)
+      - [Prerequisites](#prerequisites)
+      - [Calibrating](#calibrating)
+    - [Refining Z-offset](#refining-z-offset)
+
+
 ## References
 
 [Klipper Config Reference](https://www.klipper3d.org/Config_Reference.html#bltouch)
@@ -108,7 +124,7 @@ Done!
 
 ### Z offset walkthrough:
 
-Klipper has a built-in function for finding the z-offset. 
+Klipper has a built-in function for finding the probe z-offset.
 
 This is covered [in the docs here](https://www.klipper3d.org/Probe_Calibrate.html#calibrating-probe-z-offset).
 
@@ -132,6 +148,8 @@ Run `G28` to home the printer.
 > If your nozzle moves to 0,0 after homing then manually move the nozzle using the interface controls or gcode commands so that the probe's position is near the center of the bed. It doesn't need to be perfect.
 
 Run `PROBE_CALIBRATE`
+
+> NOTE: You can use `Z_ENDSTOP_CALIBRATE` to perform the same calibration procedure on a printer which doesn't use a probe for homing.
 
 Then use `TESTZ Z=-1` to bring the nozzle 1mm **closer** to the bed
 
@@ -169,7 +187,7 @@ If you don't have some manner of control interface to perform the baby-stepping,
 
 Reference: [SET_GCODE_OFFSET](https://www.klipper3d.org/G-Codes.html#set_gcode_offset)
 
-> Note: It's important to include the `MOVE=1` as that tells Klipper to apply the offset immediately instead of at the next Z-axis move.
+> NOTE: It's important to include the `MOVE=1` as that tells Klipper to apply the offset immediately instead of at the next Z-axis move.
 
 Then use the following commands after the print completes to save the offset to your config:
 
@@ -177,6 +195,8 @@ Then use the following commands after the print completes to save the offset to 
     SAVE_CONFIG
 
 Reference: [Z_OFFSET_APPLY_PROBE](https://www.klipper3d.org/G-Codes.html#z_offset_apply_probe)
+
+> NOTE: If you don't have a probe, you can still apply baby-stepped adjustments to your endstop z-offset using `Z_OFFSET_APPLY_ENDSTOP` and `SAVE_CONFIG`
 
 Here are some images to help you recognize a properly calibrated first layer:
 

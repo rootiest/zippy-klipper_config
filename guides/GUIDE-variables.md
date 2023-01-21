@@ -19,6 +19,27 @@
 
 # Advanced Macro Techniques
 
+- [Advanced Macro Techniques](#advanced-macro-techniques)
+  - [Notation](#notation)
+  - [Variables And Parameters](#variables-and-parameters)
+    - [Parameters](#parameters)
+  - [Local Variables](#local-variables)
+  - [GCode Variables](#gcode-variables)
+  - [Persistent Variables](#persistent-variables)
+  - [Variable Types](#variable-types)
+    - [Integer](#integer)
+    - [Float](#float)
+    - [Boolean](#boolean)
+    - [String](#string)
+  - [Arrays](#arrays)
+  - [The Printer Object](#the-printer-object)
+  - [Delayed Gcode Macros](#delayed-gcode-macros)
+  - [Organizing your config](#organizing-your-config)
+    - [The `[include]` function.](#the-include-function)
+    - [NOTES](#notes)
+  - [Useful Links](#useful-links)
+
+
 This guide will outline some of the more advanced macro and macro-related features you can use in Klipper.
 
 This is helpful information if you want to start writing your own macros, or just want a better understanding of existing macros you borrowed from elsewhere.

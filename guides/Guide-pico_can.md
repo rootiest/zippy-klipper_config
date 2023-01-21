@@ -17,8 +17,20 @@
  along with zippy_config.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
-
 # CANbus your Pico
+
+- [CANbus your Pico](#canbus-your-pico)
+  - [Why use CANbus?](#why-use-canbus)
+    - [What is CANbus?](#what-is-canbus)
+    - [Why use it on your printer?](#why-use-it-on-your-printer)
+  - [The SKR-Pico](#the-skr-pico)
+  - [How to do it](#how-to-do-it)
+  - [Flashing the CANbridge firmware](#flashing-the-canbridge-firmware)
+  - [Congrats!](#congrats)
+  - [Connect additional CAN boards.](#connect-additional-can-boards)
+  - [Extras](#extras)
+  - [Conclusions](#conclusions)
+
 
 This guide describes how to use an SKR-Pico (or any Pico board) as both a CANbus bridge *and* a Klipper mcu.
 

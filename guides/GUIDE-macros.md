@@ -20,6 +20,18 @@
 
 # The Macros
 
+- [The Macros](#the-macros)
+  - [START\_PRINT Macro](#start_print-macro)
+  - [END\_PRINT Macro](#end_print-macro)
+- [Slicer Settings](#slicer-settings)
+  - [Cura Start G-Code](#cura-start-g-code)
+  - [PrusaSlicer Start G-Code](#prusaslicer-start-g-code)
+  - [SuperSlicer Start G-Code](#superslicer-start-g-code)
+  - [SuperSlicer/PrusaSlicer/Cura End G-Code](#superslicerprusaslicercura-end-g-code)
+    - [Update:](#update)
+  - [Why use macros?](#why-use-macros)
+
+
 These are example macros you can use with your slicer to let Klipper manage the start and end procedures.
 
 You can just paste these macros into your `printer.cfg` file.

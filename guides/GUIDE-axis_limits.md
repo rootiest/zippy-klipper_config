@@ -19,6 +19,19 @@
 
 # Finding the axis limits
 
+
+- [Finding the axis limits](#finding-the-axis-limits)
+  - [Calibrating 0,0 and position\_min](#calibrating-00-and-position_min)
+    - [Notes](#notes)
+    - [Calibration steps](#calibration-steps)
+  - [Finding position\_max](#finding-position_max)
+    - [Notes](#notes-1)
+    - [Calibration steps](#calibration-steps-1)
+  - [What about Bed Size](#what-about-bed-size)
+    - [Configure the Slicer](#configure-the-slicer)
+  - [You did it!](#you-did-it)
+
+
 The purpose of the stepper `min_position` and `max_position` is to establish the maximum ***physical*** range for each axis, not just the bed size on paper.
 
 These values shouldn't represent your bed size, particularly on the X-axis where you should be able to travel well beyond the range of your bed on a typical Ender-style printer.

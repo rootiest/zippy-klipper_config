@@ -21,6 +21,16 @@
 
 # Bed Mesh Boundaries
 
+- [Bed Mesh Boundaries](#bed-mesh-boundaries)
+  - [Prerequisites](#prerequisites)
+  - [Configuring mesh boundaries](#configuring-mesh-boundaries)
+    - [Sample values:](#sample-values)
+    - [The Math](#the-math)
+  - [Probe Limits Macro](#probe-limits-macro)
+  - [References](#references)
+
+This guide outlines how to configure the boundaries for your bed meshes. This will help you prevent out-of-range errors and other issues like probing off the edge of the bed during meshes.
+
 ## Prerequisites
 
 You should first complete these two guides:
