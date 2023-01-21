@@ -99,7 +99,7 @@ Then update your `position_max` values again if necessary and restart.
 
 Your physical range should now be properly configured. Test it by moving with the interface controls and ensure that you can move from one end to the other of each axis without any physical contact or slipping/skipping.
 
-## What about  Bed Size
+## What about Bed Size
 
 But what about the bed size? 
 
@@ -115,11 +115,13 @@ The second half is finding the position of the back-right corner.
 >
 >We want to calibrate for ***your*** machine no matter what its range is, or is supposed to be.
 
-### Alright Let's do this!
+### Configure the Slicer
 
 Move the nozzle to the back-right corner of the bed and note those coordinates.
 
 Put those values in your slicer for the `bed size`.
+
+> NOTE: Make sure you have `Origin at center` unchecked/disabled. The origin should be 0,0 or the front-left of the bed as we established earlier. This is especially relevant for Cura users.
 
 Set the `z_stepper` `max_position` to something excessively high (like we did for the other `max_position` calibrations)
 
@@ -129,9 +131,9 @@ Home the printer and then move the z-axis slowly to its physical maximum.
 
 This also requires caution, you may or may not physically contact anything, but there's still a maximum range for your Z axis and you want to set it accurately.
 
-Note the Z coordinates at that position and assign that value to your `z_stepper` `max_position`. This will establish your maximum travel height. 
+Note the Z coordinates at that position and assign that value to your `z_stepper` `max_position`. This will establish your maximum travel height.
 
-You can also enter that value in your Slicer settings as the maximum height.
+You can also enter that value in your Slicer settings as the maximum height so that the slicer will not generate prints outside of your printer's physical limits.
 
 ## You did it!
 
