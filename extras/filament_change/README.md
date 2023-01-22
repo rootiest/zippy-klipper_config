@@ -115,6 +115,10 @@ This is the minimum height to park at during filament changes. If a runout occur
 
 This variable defines how much higher to park for filament changes when a runout occurs at a height above the zmin defined above. This will not go above the `max_position` defined in your z_stepper config.
 
+    variable_load_delay: 0                  # Delay before loading on filament insert
+
+This variable defines the delay before loading when a filament insertion is detected. The value is given in seconds.
+
     variable_load_fast: 50          # Length to load the filament before reaching the hotend
 
 This variable defines the length to extrude while loading to cover the distance between the extruder and the hotend. It should bring the filament to just before the nozzle.
