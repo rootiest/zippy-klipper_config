@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Copyright (C) 2023 Chris Laprade
 # 
 # This file is part of zippy_config.
