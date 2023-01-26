@@ -39,6 +39,7 @@ During manual filament changes this behavior is modified slightly to account for
 - [Configuration](#configuration)
 - [Usage](#usage)
   - [Filament Runouts](#filament-runouts)
+  - [Slicer Material/Color Change](#slicer-materialcolor-change)
   - [Manual Filament Change](#manual-filament-change)
   - [Manual Purging](#manual-purging)
   - [Toggling Filament Sensing](#toggling-filament-sensing)
@@ -268,6 +269,12 @@ The sensor will also be enabled briefly after filament unloading to facilitate a
 
 This macro can be used in a few ways as described below:
 
+There are three main types of filament change triggers:
+
+1. **Runouts:** These will use the `FILAMENT_RUNOUT` command.
+2. **Slicer:** These will use the `M600` command.
+3. **Manual:** These will use the `CHANGE_FILAMENT` command.
+
 ## Filament Runouts
 
 Configure your `filament_switch_sensor` as follows:
@@ -314,6 +321,18 @@ The steps to use this are as follows:
 - The user may now `RESUME` the print
 
 This process is meant to not only automate the filament change steps, but also to better manage steps like heating and cooling the extruder. In the case of a runout, the current extruder target is stored and then used for heating during and after the filament change.
+
+## Slicer Material/Color Change
+
+Filament changes can be initiated by the slicer. This is typically used for color/filament changes at specific points in the print.
+
+In your slicer, simply use the default `M600` command for filament changes/color changes.
+
+In Cura that will require a post-processing plugin.
+
+In PrusaSlicer/SuperSlicer simply add it in the custom gcode for Filament Changes.
+
+In both cases just add `M600` to the gcode for that task.
 
 ## Manual Filament Change
 
