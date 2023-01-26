@@ -19,6 +19,17 @@
 
 # ADXL_SHAPER
 
+- [ADXL\_SHAPER](#adxl_shaper)
+  - [Installation](#installation)
+    - [Prerequisites](#prerequisites)
+    - [Macros and Scripts](#macros-and-scripts)
+  - [Configuration](#configuration)
+    - [Prerequisites](#prerequisites-1)
+    - [Include Config](#include-config)
+  - [Usage](#usage)
+- [Credits](#credits)
+
+
 These macros are meant to simplify and automate the shaper calibration process.
 
 They performs the following steps:
