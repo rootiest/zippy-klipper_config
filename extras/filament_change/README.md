@@ -334,6 +334,8 @@ In PrusaSlicer/SuperSlicer simply add it in the custom gcode for Filament Change
 
 In both cases just add `M600` to the gcode for that task.
 
+This functions almost identically to the `FILAMENT_RUNOUT` command.
+
 ## Manual Filament Change
 
 This process is very similar to the runout process above but it behaves slightly differently:
