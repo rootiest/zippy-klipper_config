@@ -62,7 +62,7 @@ However, if you already have that section elsewhere in your config then you can 
 
 Add the following line to your `printer.cfg` file near the top:
 
-    [include ./shaper/ADXL_SHAPER.cfg]
+    [include shaper/ADXL_SHAPER.cfg]
 
 ## Usage
 
