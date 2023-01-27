@@ -266,12 +266,15 @@ The sensor will also be enabled briefly after filament unloading to facilitate a
 
     variable_auto_load: True                # Set this to False if you do not want the filament to load auomatically
 
-This option governs whether the filament sensor detecting the filament being inserted will trigger a `LOAD_FILAMENT` automatically.
+This option governs whether the filament sensor detecting the filament being inserted will trigger a `LOAD_FILAMENT` automatically. It is enabled (`True`) by default.
 
     variable_load_delay: 0                  # Delay before loading on filament insert
 
 This variable defines the delay before loading when a filament insertion is detected. The value is given in seconds. This will only apply when `variable_auto_load: True`
 
+    variable_auto_unload: False             # Set this to True to have runouts and color-changes unload right away
+
+This option governs whether the filament will be unloaded immediately after a runout is triggered (`FILAMENT_RUNOUT`) or a slicer-initiated filament/color-change occurs (`M600`) It is disabled (`False`) by default.
 # Usage
 
 This macro can be used in a few ways as described below:
@@ -437,6 +440,8 @@ This helps to prevent accidental triggering outside of prints when performing ma
             _INSERT_FILAMENT
 
     The `auto_load` variable will determine whether insertions automatically trigger a `LOAD_FILAMENT` so you no longer need to adjust your `insert_gcode`. All builds will use the same configuration.
+
+- An `auto_unload` option has also been added. This is not enabled by default. Setting `auto_unload: True` will cause the macro to unload the filament immediately after any runout/filament change commands, without any user input.
 
 - Added `use_fluidd` option: This will output the next macro commands to the console to more easily proceed with the steps.
 - Set `auto_sensor` to `False` by default. Change this to `True` to have the sensor disable automatically. ([See above section for config](#automating-filament-sensor-toggling))
