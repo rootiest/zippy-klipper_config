@@ -47,7 +47,7 @@ During manual filament changes this behavior is modified slightly to account for
   - [Parameters](#parameters)
   - [Additional Steps](#additional-steps)
 - [Changelog](#changelog)
-  - [v2.1.5 2023-1-27](#v215-2023-1-27)
+  - [v2.2.0 2023-1-27](#v220-2023-1-27)
   - [v2.0.1 2023-1-3](#v201-2023-1-3)
   - [v2.0 2023-1-1](#v20-2023-1-1)
   - [v1.9 2022-12-30](#v19-2022-12-30)
@@ -116,10 +116,6 @@ This is the minimum height to park at during filament changes. If a runout occur
     variable_z: 10                  # Filament change z-hop height
 
 This variable defines how much higher to park for filament changes when a runout occurs at a height above the zmin defined above. This will not go above the `max_position` defined in your z_stepper config.
-
-    variable_load_delay: 0                  # Delay before loading on filament insert
-
-This variable defines the delay before loading when a filament insertion is detected. The value is given in seconds.
 
     variable_load_fast: 50          # Length to load the filament before reaching the hotend
 
@@ -266,6 +262,15 @@ The result of making those changes and setting this variable to `True` is that t
 This is a convenient way to prevent accidental triggering when performing maintenance and other pre/post-print tasks.
 
 The sensor will also be enabled briefly after filament unloading to facilitate automated loading when the sensor detects the new filament.
+
+    variable_auto_load: True                # Set this to False if you do not want the filament to load auomatically
+
+This option governs whether the filament sensor detecting the filament being inserted will trigger a `LOAD_FILAMENT` automatically.
+
+    variable_load_delay: 0                  # Delay before loading on filament insert
+
+This variable defines the delay before loading when a filament insertion is detected. The value is given in seconds. This will only apply when `variable_auto_load: True`
+
 # Usage
 
 This macro can be used in a few ways as described below:
@@ -300,9 +305,11 @@ Configure your `filament_motion_sensor` as follows:
     insert_gcode:
       LOAD_FILAMENT
 
-If your filament sensor is not nearby to your extruder, you may want to leave out the `insert_gcode` part of this configuration.
+If your filament sensor is not nearby to your extruder, you should set `variable_auto_load: False`
 
 If your filament sensor *is* just before the extruder, then this feature will allow it to start the loading macro immediately as soon as the sensor detects filament again.
+
+You can also configure a delay (`variable_load_delay`) if you need a few seconds to push the filament past the sensor and into the extruder.
 
 This will allow filament runouts to automatically begin the filament change procedure.
 
@@ -409,11 +416,22 @@ This helps to prevent accidental triggering outside of prints when performing ma
 
 # Changelog
 
-## v2.1.5 2023-1-27
+## v2.2.0 2023-1-27
 
-- Bugfixes.
-- Set auto_sensor to False by default
-- Track mode of operation to differentiate between FILAMENT_RUNOUT and M600
+- __IMPORTANT: Changes to the way filament insertions work__
+    
+    Regardless of your build, please set the `insert_gcode` for your filament_sensor as follows:
+
+        insert_gcode:
+            _INSERT_FILAMENT
+
+    The `auto_load` variable will determine whether insertions automatically trigger a `LOAD_FILAMENT` so you no longer need to adjust your `insert_gcode`. All builds will use the same configuration.
+
+- Added `use_fluidd` option: This will output the next macro commands to the console to more easily proceed with the steps.
+- Set `auto_sensor` to `False` by default
+- Track mode of operation to differentiate between `FILAMENT_RUNOUT` and `M600`
+- Handle configs that lack a `extruder.min_extrude_temp`
+- Misc Bugfixes
 
 ## v2.0.1 2023-1-3
 
