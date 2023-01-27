@@ -277,11 +277,6 @@ This variable defines the delay before loading when a filament insertion is dete
 
 This option governs whether the filament will be unloaded immediately after a runout is triggered (`FILAMENT_RUNOUT`) or a slicer-initiated filament/color-change occurs (`M600`) It is disabled (`False`) by default.
 
-    variable_auto_resume: False             # Set this to True to resume right away after loading
-
-This option governs whether the print will be resumed immediately after loading. This will skip the usual requirement of the user selecting `RESUME` manually after loading.
-
-
     variable_clean_nozzle: False            # Set this to True to perform a nozzle cleaning after loading
 
 This option will cause the printer to perform a nozzle cleaning procedure after loading the filament.
@@ -448,7 +443,6 @@ This helps to prevent accidental triggering outside of prints when performing ma
 
 - Add `clean_nozzle` option. Set to `True` to execute a nozzle-cleaning macro after ffilament loading is complete.
 - Add `clean_macro` variable. Use this to specify the name of your nozzle-cleaning macro. You must provide your own nozzle-cleaning macro. This macro is not provided (yet)
-- Add `auto_resume` option. Set to `True` to have the print resume immediately after filament loading is complete. (or after nozzle-cleaning)
 
 
 ## v2.2.0 2023-1-27
