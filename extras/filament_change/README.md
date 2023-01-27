@@ -379,7 +379,7 @@ These commands also accept a `SENSOR` parameter that allows you to override the 
 
 ### Automating Filament Sensor Toggling
 
-To automate this sensor-toggling process, enable the `auto_sensor` variable and add the companion commands to your `START_PRINT` and `END_PRINT` macros:
+To automate this sensor-toggling process, set the `auto_sensor` variable to `True` and add the companion commands to your `START_PRINT` and `END_PRINT` macros:
 
 Anywhere in `START_PRINT`:
 
@@ -439,7 +439,7 @@ This helps to prevent accidental triggering outside of prints when performing ma
     The `auto_load` variable will determine whether insertions automatically trigger a `LOAD_FILAMENT` so you no longer need to adjust your `insert_gcode`. All builds will use the same configuration.
 
 - Added `use_fluidd` option: This will output the next macro commands to the console to more easily proceed with the steps.
-- Set `auto_sensor` to `False` by default. Change this to `True` to have the sensor disable automatically. ([See above section for config](#filament-runouts))
+- Set `auto_sensor` to `False` by default. Change this to `True` to have the sensor disable automatically. ([See above section for config](#automating-filament-sensor-toggling))
 - Track mode of operation to differentiate between `FILAMENT_RUNOUT` and `M600`
 - Handle configs that lack a `extruder.min_extrude_temp`
 - Misc Bugfixes
