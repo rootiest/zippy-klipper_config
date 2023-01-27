@@ -448,6 +448,12 @@ This helps to prevent accidental triggering outside of prints when performing ma
 - Track mode of operation to differentiate between `FILAMENT_RUNOUT` and `M600`
 - Handle configs that lack a `extruder.min_extrude_temp`
 - Misc Bugfixes
+- The following variables were added in this update:
+    
+        variable_use_fluidd: True
+        variable_auto_load: True
+        variable_auto_unload: False
+        variable_runout: False
 
 ## v2.0.1 2023-1-3
 
