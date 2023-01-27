@@ -47,6 +47,7 @@ During manual filament changes this behavior is modified slightly to account for
   - [Parameters](#parameters)
   - [Additional Steps](#additional-steps)
 - [Changelog](#changelog)
+  - [v2.1.5 2023-1-27](#v215-2023-1-27)
   - [v2.0.1 2023-1-3](#v201-2023-1-3)
   - [v2.0 2023-1-1](#v20-2023-1-1)
   - [v1.9 2022-12-30](#v19-2022-12-30)
@@ -407,6 +408,12 @@ This will ensure the sensor is enabled at the start of prints and then disabled 
 This helps to prevent accidental triggering outside of prints when performing maintenance and other tasks.
 
 # Changelog
+
+## v2.1.5 2023-1-27
+
+- Bugfixes.
+- Set auto_sensor to False by default
+- Track mode of operation to differentiate between FILAMENT_RUNOUT and M600
 
 ## v2.0.1 2023-1-3
 
