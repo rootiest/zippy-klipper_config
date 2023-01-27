@@ -48,6 +48,7 @@ During manual filament changes this behavior is modified slightly to account for
   - [Parameters](#parameters)
   - [Additional Steps](#additional-steps)
 - [Changelog](#changelog)
+  - [v2.2.5 2023-1-27](#v225-2023-1-27)
   - [v2.2.0 2023-1-27](#v220-2023-1-27)
   - [v2.0.1 2023-1-3](#v201-2023-1-3)
   - [v2.0 2023-1-1](#v20-2023-1-1)
@@ -275,6 +276,19 @@ This variable defines the delay before loading when a filament insertion is dete
     variable_auto_unload: False             # Set this to True to have runouts and color-changes unload right away
 
 This option governs whether the filament will be unloaded immediately after a runout is triggered (`FILAMENT_RUNOUT`) or a slicer-initiated filament/color-change occurs (`M600`) It is disabled (`False`) by default.
+
+    variable_auto_resume: False             # Set this to True to resume right away after loading
+
+This option governs whether the print will be resumed immediately after loading. This will skip the usual requirement of the user selecting `RESUME` manually after loading.
+
+
+    variable_clean_nozzle: False            # Set this to True to perform a nozzle cleaning after loading
+
+This option will cause the printer to perform a nozzle cleaning procedure after loading the filament.
+
+    variable_clean_macro: 'CLEAN_NOZZLE'    # Set this to the name of your nozzle cleaning macro
+
+This variable is the name of the nozzle cleaning macro used by the option above. You will need to provide your own nozzle-cleaning macro to use this feature.
 # Usage
 
 This macro can be used in a few ways as described below:
@@ -429,6 +443,13 @@ This will ensure the sensor is enabled at the start of prints and then disabled 
 This helps to prevent accidental triggering outside of prints when performing maintenance and other tasks.
 
 # Changelog
+
+## v2.2.5 2023-1-27
+
+- Add `clean_nozzle` option. Set to `True` to execute a nozzle-cleaning macro after ffilament loading is complete.
+- Add `clean_macro` variable. Use this to specify the name of your nozzle-cleaning macro. You must provide your own nozzle-cleaning macro. This macro is not provided (yet)
+- Add `auto_resume` option. Set to `True` to have the print resume immediately after filament loading is complete. (or after nozzle-cleaning)
+
 
 ## v2.2.0 2023-1-27
 
