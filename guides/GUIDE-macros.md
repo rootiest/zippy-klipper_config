@@ -29,6 +29,7 @@
   - [SuperSlicer Start G-Code](#superslicer-start-g-code)
   - [SuperSlicer/PrusaSlicer/Cura End G-Code](#superslicerprusaslicercura-end-g-code)
     - [Update:](#update)
+    - [Advanced SuperSlicer Start G-code](#advanced-superslicer-start-g-code)
   - [Why use macros?](#why-use-macros)
 
 
@@ -107,12 +108,14 @@ These code snippets should be entered in your slicer settings. You should *repla
     start_print BED_TEMP={first_layer_bed_temperature} EXTRUDER_TEMP={first_layer_temperature[initial_extruder] + extruder_temperature_offset[initial_extruder]}
 
 > Note: In most cases you could get away with using just `{first_layer_temperature}` for the extruder temp, but the one used above is a better, more inclusive option that will account for edge cases like printers with multiple extruders while also still working perfectly for more traditional builds.
-> 
+
 Additionally, the PrusaSlicer format shown in the above section is also compatible with SuperSlicer. Or they can be combined to cover every possible build scenario:
 
     M109 S0
     M190 S0
     start_print BED_TEMP={first_layer_bed_temperature[initial_extruder]} EXTRUDER_TEMP={first_layer_temperature[initial_extruder] + extruder_temperature_offset[initial_extruder]}
+
+As SuperSlicer supports Klipper directly, you can get even more control using the format in the [Advanced SuperSlicer Start G-code section](#advanced-superslicer-start-g-code) below.
 ## SuperSlicer/PrusaSlicer/Cura End G-Code
 
     end_print
@@ -128,6 +131,32 @@ SuperSlicer *shouldn't* when selecting `Klipper` for the G-code Flavor. However,
 It's also worth noting this shouldn't be a serious concern in most cases. At most, allowing the Slicer to automatically add those commands after the macro may just cause a slight hesitation/lag immediately before the print begins. 
 
 However, if you wish to do something like offset temperature values using code in your macro, you may have an issue without the dummy commands because the Slicer will set them back at the start of the first layer.
+
+### Advanced SuperSlicer Start G-code
+
+SuperSlicer (when configured for Klipper flavor) has the option to completely disable any automatic gcode insertion for things like the start gcode. You can use this to get around the need to add additional "dummy" commands.
+
+This is achieved by going to the custom gcode settings and checking the box for "Only custom Start G-Code"
+
+It's important to note that when using this option, the slicer will not add ***any*** of the automatic start g-code commands that are normally used. This goes beyond just simple temperature settings.
+
+I compared generated gcode files with and without this box selected and aside from preheat temperatures (which should already be handled by your macro) SuperSlicer also added the following commands:
+
+    M107 ; disable fan
+    G21 ; set units to millimeters
+    G90 ; use absolute coordinates
+    M82 ; use absolute distances for extrusion
+    G92 E0 ; reset extrusion distance
+
+If using this option, I would recommend adding those commands to your `START_PRINT` macro so that you do not run into any issues.
+
+With those added in your `START_PRINT` macro, your start gcode in SuperSlicer could simply be the following:
+
+    start_print BED_TEMP={first_layer_bed_temperature} EXTRUDER_TEMP={first_layer_temperature[initial_extruder] + extruder_temperature_offset[initial_extruder]}
+
+While more advanced, this feature gives you far more control over the behavior of your prints (or at least the pre-print behavior).
+
+If you are using SuperSlicer and comfortable with adding the additional commands to your macro then I would recommend using this feature for more granular control over your prints.
 
 ## Why use macros?
 
