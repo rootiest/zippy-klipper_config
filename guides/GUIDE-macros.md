@@ -31,6 +31,7 @@
     - [Update:](#update)
     - [Advanced SuperSlicer Start G-code](#advanced-superslicer-start-g-code)
   - [Why use macros?](#why-use-macros)
+  - [Additional Notes](#additional-notes)
 
 
 These are example macros you can use with your slicer to let Klipper manage the start and end procedures.
@@ -97,7 +98,7 @@ These code snippets should be entered in your slicer settings. You should *repla
 
     M109 S0
     M190 S0
-    start_print EXTRUDER_TEMP={first_layer_temperature[initial_extruder]} BED_TEMP={first_layer_bed_temperature[initial_extruder]}
+    start_print EXTRUDER_TEMP={first_layer_temperature[initial_extruder]} BED_TEMP={first_layer_bed_temperature[initial_extruder]} CHAMBER_TEMP={chamber_temperature}
 
 > Note: PrusaSlicer recently changed their placeholder/variable formatting. The above applies to PrusaSlicer 2.5.0. For previous versions the SuperSlicer example below should be compatible.
 
@@ -105,7 +106,7 @@ These code snippets should be entered in your slicer settings. You should *repla
 
     M109 S0
     M190 S0
-    start_print BED_TEMP={first_layer_bed_temperature} EXTRUDER_TEMP={first_layer_temperature[initial_extruder] + extruder_temperature_offset[initial_extruder]}
+    start_print BED_TEMP={first_layer_bed_temperature} EXTRUDER_TEMP={first_layer_temperature[initial_extruder] + extruder_temperature_offset[initial_extruder]} CHAMBER_TEMP={chamber_temperature}
 
 > Note: In most cases you could get away with using just `{first_layer_temperature}` for the extruder temp, but the one used above is a better, more inclusive option that will account for edge cases like printers with multiple extruders while also still working perfectly for more traditional builds.
 
@@ -113,7 +114,7 @@ Additionally, the PrusaSlicer format shown in the above section is also compatib
 
     M109 S0
     M190 S0
-    start_print BED_TEMP={first_layer_bed_temperature[initial_extruder]} EXTRUDER_TEMP={first_layer_temperature[initial_extruder] + extruder_temperature_offset[initial_extruder]}
+    start_print BED_TEMP={first_layer_bed_temperature[initial_extruder]} EXTRUDER_TEMP={first_layer_temperature[initial_extruder] + extruder_temperature_offset[initial_extruder]} CHAMBER_TEMP={chamber_temperature}
 
 As SuperSlicer supports Klipper directly, you can get even more control using the format in the [Advanced SuperSlicer Start G-code section](#advanced-superslicer-start-g-code) below.
 ## SuperSlicer/PrusaSlicer/Cura End G-Code
@@ -152,7 +153,7 @@ If using this option, I would recommend adding those commands to your `START_PRI
 
 With those added in your `START_PRINT` macro, your start gcode in SuperSlicer could simply be the following:
 
-    start_print BED_TEMP={first_layer_bed_temperature} EXTRUDER_TEMP={first_layer_temperature[initial_extruder] + extruder_temperature_offset[initial_extruder]}
+    start_print BED_TEMP={first_layer_bed_temperature} EXTRUDER_TEMP={first_layer_temperature[initial_extruder] + extruder_temperature_offset[initial_extruder]} CHAMBER_TEMP={chamber_temperature}
 
 While more advanced, this feature gives you far more control over the behavior of your prints (or at least the pre-print behavior).
 
@@ -202,3 +203,27 @@ The [Status Reference](https://www.klipper3d.org/Status_Reference.html) function
 You can even read values directly from the config file, or check whether a `SAVE_CONFIG` is necessary and what items are queued to be saved.
 
 It's pretty powerful stuff, and macros are absolutely worth using!
+
+## Additional Notes
+
+In the start gcodes above for PrusaSlicer and SuperSlicer I included a `CHAMBER_TEMP` parameter. This allows you to pass the chamber temperature configured in those slicers to your macro.
+
+Cura does not have an option for this that I could find.
+
+The sample `START_PRINT` macro included does not make use of that parameter. Your macro may or may not. You may not have a chamber heater.
+
+All of that is ok, even with that parameter included. If your `START_PRINT` macro doesn't use the parameter, it will just be ignored.
+
+I decided it was worth including this in my guide despite many users not needing it, and it not being included in the same `START_PRINT` macro because it doesn't hurt to have it and not use it.
+
+It also serves as an additional example of a parameter.
+
+If you *are* interested in using it in your macro, simply include something like this in your macro:
+
+    {% set CHAMBER_TEMP = params.CHAMBER_TEMP|default(50)|float %}
+
+and then use it in a command like this:
+
+    SET_HEATER_TEMPERATURE HEATER=chamber_heater TARGET={CHAMBER_TEMP}
+
+And again, if you don't need this or use it, the start gcode will still work perfectly with that parameter whether you use it or not.
