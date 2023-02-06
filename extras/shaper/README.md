@@ -49,9 +49,9 @@ The easiest way to do so is using [KIAUH](https://github.com/th33xitus/kiauh).
 
 ### Macros and Scripts
 
-Next create a `shaper` folder in your `~printer_data/config` directory.
+Next create a `shaper` folder in your `~/printer_data/config` directory.
 
-Download the following to that `~printer_data/config/shaper/` directory:
+Download the following to that `~/printer_data/config/shaper/` directory:
 
 - [ADXL_SHAPER.cfg](ADXL_SHAPER.cfg)
 - [adxl_shape_x.sh](adxl_shape_x.sh)
