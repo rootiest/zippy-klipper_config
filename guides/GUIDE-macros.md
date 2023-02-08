@@ -31,6 +31,7 @@
     - [Update:](#update)
     - [Advanced SuperSlicer Start G-code](#advanced-superslicer-start-g-code)
   - [Why use macros?](#why-use-macros)
+  - [Passing Other Parameters](#passing-other-parameters)
   - [Additional Notes](#additional-notes)
 
 
@@ -204,6 +205,37 @@ You can even read values directly from the config file, or check whether a `SAVE
 
 It's pretty powerful stuff, and macros are absolutely worth using!
 
+## Passing Other Parameters
+
+You can pass all sorts of values from the slicer to your macros if you want to get other information into Klipper such as the material/filament type, the nozzle diameter, etc.
+
+Check out [my SET_MATERIAL and SET_NOZZLE macros](../extras/SET_MATERIAL.cfg) for an example of using other slicer values in your macros.
+
+In Cura we call those using:
+
+    SET_MATERIAL MATERIAL='{material_type}'
+
+In PrusaSlicer/SuperSlicer:
+
+    SET_MATERIAL MATERIAL='{filament_type[initial_extruder]}'
+
+Then in the macro the variable is assigned just like we do in the `START_PRINT` macro:
+
+    {% set MATERIAL = params.MATERIAL|default('PLA')|string %}
+
+So how do we find those varible names?
+
+In PrusaSlicer/SuperSlicer it's simple: just hover your mouse cursor over a settings field and the tooltip will show something like this:
+
+    parameter name: wall_thickness
+
+In this above example, the variable we'd use is `wall_thickness`
+
+Cura is less direct. 
+
+I've found [this page](https://files.fieldofview.com/cura/Replacement_Patterns.html) to be fairly accurate and complete.
+
+[There's also a good list for SuperSlicer here.](https://github.com/supermerill/SuperSlicer/wiki/Macro-&-Variable-list)
 ## Additional Notes
 
 In the start gcodes above for PrusaSlicer and SuperSlicer I included a `CHAMBER_TEMP` parameter. This allows you to pass the chamber temperature configured in those slicers to your macro.
