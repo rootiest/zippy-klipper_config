@@ -265,7 +265,7 @@ All of that is ok, even with that parameter included. If your `START_PRINT` macr
 
 I decided it was worth including this in my guide despite many users not needing it, and it not being included in the same `START_PRINT` macro because it doesn't hurt to have it and not use it.
 
-It also serves as an additional example of a parameter.
+It also serves as an additional example of [using a slicer variable in a parameter](#passing-other-parameters).
 
 If you *are* interested in using it in your macro, simply include something like this in your macro:
 
