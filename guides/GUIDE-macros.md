@@ -239,7 +239,7 @@ I've found [this page](https://files.fieldofview.com/cura/Replacement_Patterns.h
 
 Typically I prefer to address these additional parameters using a separate/specific macro like the `SET_MATERIAL` one in my example above.
 
-However, you can add them on to your `START_PRINT` command and use them inside that macro if you prefer.
+However, you can add them on to the end of your `START_PRINT` command and use them inside that macro if you prefer.
 
 For example, in Cura you might use:
 
