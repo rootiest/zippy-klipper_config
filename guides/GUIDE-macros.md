@@ -236,6 +236,23 @@ Cura is less direct.
 I've found [this page](https://files.fieldofview.com/cura/Replacement_Patterns.html) to be fairly accurate and complete.
 
 [There's also a good list for SuperSlicer here.](https://github.com/supermerill/SuperSlicer/wiki/Macro-&-Variable-list)
+
+Typically I prefer to address these additional parameters using a separate/specific macro like the `SET_MATERIAL` one in my example above.
+
+However, you can add them on to your `START_PRINT` command and use them inside that macro if you prefer.
+
+For example, in Cura you might use:
+
+    start_print BED_TEMP={material_bed_temperature_layer_0} EXTRUDER_TEMP={material_print_temperature_layer_0} MATERIAL='{material_type}'
+
+and then add this inside your `START_PRINT` macro:
+
+    {% set MATERIAL = params.MATERIAL|default('PLA')|string %}
+
+You could even work with gcode variables directly using a `SET_GCODE_VARIABLE` command.
+
+Check out my [Advanced Macro Techniques](GUIDE-variables.md) guide for more information on that kind of thing.
+
 ## Additional Notes
 
 In the start gcodes above for PrusaSlicer and SuperSlicer I included a `CHAMBER_TEMP` parameter. This allows you to pass the chamber temperature configured in those slicers to your macro.
