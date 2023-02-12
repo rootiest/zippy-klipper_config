@@ -27,6 +27,7 @@
     - [Sample values:](#sample-values)
     - [The Math](#the-math)
   - [Probe Limits Macro](#probe-limits-macro)
+  - [Leveling Assistance](#leveling-assistance)
   - [References](#references)
 
 This guide outlines how to configure the boundaries for your bed meshes. This will help you prevent out-of-range errors and other issues like probing off the edge of the bed during meshes.
@@ -118,6 +119,56 @@ To use this macro, download the `GET_PROBE_LIMITS.cfg` file to your `~/printer_d
     [include GET_PROBE_LIMITS.cfg]
 
 Credit to [u/davidosmithII](https://www.reddit.com/user/davidosmithII/) who came up with the idea and created the original macro to do it.
+
+## Leveling Assistance
+
+When you have a probe, you can also use it to help you level your bed.
+
+This is performed using the [SCREWS_TILT_CALCULATE command](https://www.klipper3d.org/G-Codes.html#screws_tilt_calculate).
+
+In order to use this, we need to set up a `screws_tilt_adjust` section in the config.
+
+Here is an example:
+
+    # Bed screw adjustment
+    [screws_tilt_adjust]
+    screw1: 83,43
+    screw1_name: front left screw
+    screw2: 250,43
+    screw2_name: front right screw
+    screw3: 250,210
+    screw3_name: rear right screw
+    screw4: 83,210
+    screw4_name: rear left screw
+    screw_thread: CW-M4
+
+The `screw_thread` is the threading used on your bed-adjustment screws. Typical Ender 3 style beds use M4 threading and turn clockwise to decrease the bed height.
+
+If you are unsure, you can check your bed screws to verify the correct threading for your config.
+
+The `screw_name`'s can be anything you'd like. They are just for your own reference (and some UI stuff) There is no rules to how you may name them.
+
+The number/order of the screws *does* matter however. Note the names I used for mine, your screws will also be referenced in that order so you should label yours accordingly (or at least use the correct coordinates) They are listed in a counter-clockwise order starting from the front-left.
+
+The final step is finding the coordinates to use for each screw.
+
+This process should be familiar if you followed my [previous guides](GUIDE-axis_limits.md):
+
+- Start Klipper and home the printer.
+- Using your display controls/web interface or `G1` commands, move the printhead until the probe pin is positioned above the front-left bed screw.
+- Note the X,Y coordinates either using your display/web interface or by executing the `GET_POSITION` command and checking the values for `toolhead`
+- Repeat for the other bed screws until you have coordinates for all of them. 
+- If your printer does not have enough physical range to position the probe over a bed scew, just position it as close as possible and use those coordinates.
+
+You will then use those coordinates in your `screws_tilt_adjust` config for the `screw` positions.
+
+That's it for the configuration!
+
+When you run `SCREWS_TILT_CALCULATE` it will probe all the bed screws and then tell you how much to adjust each to achieve level. 
+
+Keep in mind that even with a perfectly configured setup, adjusting one screw will cause some deviation in the others.
+
+You will need to repeat this process several times. I recommend repeating until you are able to probe all screws twice without needing to make any adjustments.
 
 ## References
 
