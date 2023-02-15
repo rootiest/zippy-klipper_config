@@ -44,6 +44,10 @@ After making those changes the script should then work as expected.
 
 # Changelog
 
+## v1.2.0
+
+- Fixed a bug where already-moved files would try to move again to the same directory.
+
 ## v1.1.0
 
 - Simplify the scripts to just run from the main config directory instead of using a scripts directory.

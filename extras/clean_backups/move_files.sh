@@ -55,7 +55,7 @@ if [ ! -d "$2" ]; then
 fi
 
 # Search for and move files
-matching_files=$(find "$1" -type f -name "$3")
+matching_files=$(find "$1" -type f -wholename "$3")
 if [ -z "$matching_files" ]; then
     echo "No files matching the regex were found in the source folder."
     exit 0
