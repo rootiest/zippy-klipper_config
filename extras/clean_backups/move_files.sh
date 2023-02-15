@@ -50,9 +50,8 @@ if [ ! -d "$1" ]; then
 fi
 
 if [ ! -d "$2" ]; then
-    echo "Error: Destination folder does not exist."
-    display_help
-    exit 1
+    echo "Destination folder does not exist. Creating destination folder..."
+    mkdir -p "$2"
 fi
 
 # Search for and move files
