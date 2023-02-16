@@ -9,6 +9,7 @@ This script will clean all those `printer-####.cfg` files that clutter up the ma
 - [Installation](#installation)
 - [Setup](#setup)
 - [Changelog](#changelog)
+  - [v1.2.0](#v120)
   - [v1.1.0](#v110)
   - [v1.0.0](#v100)
 
@@ -31,6 +32,14 @@ Place the downloaded files in your main config directory:
 Add the following line near the top of your `printer.cfg` file:
 
     [include clean_backups.cfg]
+
+Make the move_files.sh script executable:
+
+From SSH, run the following:
+
+    chmod +x /home/pi/printer_data/config/move_files.sh
+
+You may need to adjust that path if your config files are not stored in `/home/pi/printer_data/config`.
 
 # Setup
 
