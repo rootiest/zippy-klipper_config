@@ -9,9 +9,10 @@ This script will clean all those `printer-####.cfg` files that clutter up the ma
 - [Installation](#installation)
 - [Setup](#setup)
 - [Changelog](#changelog)
-  - [v1.2.0](#v120)
-  - [v1.1.0](#v110)
-  - [v1.0.0](#v100)
+  - [v1.2.5 2023-02-17](#v125-2023-02-17)
+  - [v1.2.0 2023-02-15](#v120-2023-02-15)
+  - [v1.1.0 2023-02-15](#v110-2023-02-15)
+  - [v1.0.0 2023-02-14](#v100-2023-02-14)
 
 # Installation
 
@@ -53,15 +54,19 @@ After making those changes the script should then work as expected.
 
 # Changelog
 
-## v1.2.0
+## v1.2.5 2023-02-17
+
+- Use a better (more specific) regex pattern to match the backup files.
+
+## v1.2.0 2023-02-15
 
 - Fixed a bug where already-moved files would try to move again to the same directory.
 
-## v1.1.0
+## v1.1.0 2023-02-15
 
 - Simplify the scripts to just run from the main config directory instead of using a scripts directory.
 - Create the destination directory if it doesn't exist
 
-## v1.0.0
+## v1.0.0 2023-02-14
 
 - Initial Release
