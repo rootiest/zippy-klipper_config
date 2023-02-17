@@ -48,6 +48,7 @@ During manual filament changes this behavior is modified slightly to account for
   - [Parameters](#parameters)
   - [Additional Steps](#additional-steps)
 - [Changelog](#changelog)
+  - [v2.3.0 2023-02-17](#v230-2023-02-17)
   - [v2.2.5 2023-1-27](#v225-2023-1-27)
   - [v2.2.0 2023-1-27](#v220-2023-1-27)
   - [v2.0.1 2023-1-3](#v201-2023-1-3)
@@ -438,6 +439,10 @@ This will ensure the sensor is enabled at the start of prints and then disabled 
 This helps to prevent accidental triggering outside of prints when performing maintenance and other tasks.
 
 # Changelog
+
+## v2.3.0 2023-02-17
+
+- Check for missing `min_extrude_temp` setting in config and use `170` as a fallback if it is not defined. (170 is the default value that Klipper uses when none is defined)
 
 ## v2.2.5 2023-1-27
 
