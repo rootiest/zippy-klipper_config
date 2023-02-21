@@ -142,7 +142,7 @@ Here is an example:
     screw4_name: rear left screw
     screw_thread: CW-M4
 
-The `screw_thread` is the threading used on your bed-adjustment screws. Typical Ender 3 style beds use M4 threading and turn clockwise to decrease the bed height.
+The `screw_thread` is the threading used on your bed-adjustment screws. Typical Ender 3 style beds use M4 threading and turn clockwise to decrease the bed height. M3-clockwise is also somewhat common.
 
 If you are unsure, you can check your bed screws to verify the correct threading for your config.
 
