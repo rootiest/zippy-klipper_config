@@ -32,7 +32,7 @@
   - [You did it!](#you-did-it)
 
 
-The purpose of the stepper `min_position` and `max_position` is to establish the maximum ***physical*** range for each axis, not just the bed size on paper.
+The purpose of the stepper `position_min` and `position_max` is to establish the maximum ***physical*** range for each axis, not just the bed size on paper.
 
 These values shouldn't represent your bed size, particularly on the X-axis where you should be able to travel well beyond the range of your bed on a typical Ender-style printer.
 
@@ -136,7 +136,7 @@ Put those values in your slicer for the `bed size`.
 
 > NOTE: Make sure you have `Origin at center` unchecked/disabled. The origin should be 0,0 or the front-left of the bed as we established earlier. This is especially relevant for Cura users.
 
-Set the `z_stepper` `max_position` to something excessively high (like we did for the other `max_position` calibrations)
+Set the `stepper_z` `position_max` to something excessively high (like we did for the other `position_max` calibrations)
 
 Save the config and `FIRMWARE_RESTART`
 
@@ -144,7 +144,7 @@ Home the printer and then move the z-axis slowly to its physical maximum.
 
 This also requires caution, you may or may not physically contact anything, but there's still a maximum range for your Z axis and you want to set it accurately.
 
-Note the Z coordinates at that position and assign that value to your `z_stepper` `max_position`. This will establish your maximum travel height.
+Note the Z coordinates at that position and assign that value to your `stepper_z` `position_max`. This will establish your maximum travel height.
 
 You can also enter that value in your Slicer settings as the maximum height so that the slicer will not generate prints outside of your printer's physical limits.
 
