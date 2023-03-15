@@ -9,6 +9,7 @@ This script will clean all those `printer-####.cfg` files that clutter up the ma
 - [Installation](#installation)
 - [Setup](#setup)
 - [Changelog](#changelog)
+  - [v1.2.5.5 2023-03-15](#v1255-2023-03-15)
   - [v1.2.5 2023-02-17](#v125-2023-02-17)
   - [v1.2.0 2023-02-15](#v120-2023-02-15)
   - [v1.1.0 2023-02-15](#v110-2023-02-15)
@@ -53,6 +54,10 @@ Change any instances of `/home/pi/printer_data/config` to the path you are using
 After making those changes the script should then work as expected.
 
 # Changelog
+
+## v1.2.5.5 2023-03-15
+
+- Roll back regex pattern.
 
 ## v1.2.5 2023-02-17
 
