@@ -117,10 +117,12 @@ The probe `x_offset` is the X "nozzle coordinates" minus the X "probe coordinate
 
 The probe `y_offset` is the Y "nozzle coordinates" minus the Y "probe coordinates"
 
-Put those values in your config and restart. 
+Put those values in your config and restart.
 
 Done!
 
+
+![Offset diagram](resources/offset-diagram.png))
 
 ### Z offset walkthrough:
 
