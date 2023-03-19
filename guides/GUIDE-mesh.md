@@ -120,6 +120,8 @@ To use this macro, download the `GET_PROBE_LIMITS.cfg` file to your `~/printer_d
 
 Credit to [u/davidosmithII](https://www.reddit.com/user/davidosmithII/) who came up with the idea and created the original macro to do it.
 
+> Nows supports the beacon probe as well. (Thanks [DrFate09](https://github.com/DrFate09))
+
 ## Leveling Assistance
 
 When you have a probe, you can also use it to help you level your bed.
