@@ -175,7 +175,7 @@ Typically this is combined with "the paper test" where you use a sheet of paper 
 >
 > However, it's often easier to just get it close enough with the paper test (and a cold bed) Generally the expansion caused by heating the bed will make up the difference of your sheet of paper, but we can further refine the value during a print anyway (as shown below)
 
-When you run `TESTZ Z=-0.001` and other very small values then nozzle will life a little before lowering in a kind of bouncing motion. This often looks like it's hit a soft limit and not lowering, but it actually ***is*** still lowering. Klipper does this to get more precise movements and hopefully do less damage if it *does* hit the bed. The little bounce is normal, and it's still working! (You'll understand when you see it)
+When you run `TESTZ Z=-0.001` and other very small values then nozzle will lift a little before lowering in a kind of bouncing motion. This often looks like it's hit a soft limit and not lowering, but it actually ***is*** still lowering. Klipper does this to get more precise movements and hopefully do less damage if it *does* hit the bed. The little bounce is normal, and it's still working! (You'll understand when you see it)
 
 ### Refining Z-offset
 
