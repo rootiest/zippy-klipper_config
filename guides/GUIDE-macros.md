@@ -101,7 +101,7 @@ These code snippets should be entered in your slicer settings. You should *repla
 
     M109 S0
     M190 S0
-    start_print EXTRUDER_TEMP={first_layer_temperature[initial_extruder]} BED_TEMP={first_layer_bed_temperature[initial_extruder]} CHAMBER_TEMP={chamber_temperature}
+    start_print EXTRUDER_TEMP={first_layer_temperature[initial_extruder]} BED_TEMP={first_layer_bed_temperature[initial_extruder]}
 
 > Note: PrusaSlicer recently changed their placeholder/variable formatting. The above applies to PrusaSlicer 2.5.0. For previous versions the SuperSlicer example below should be compatible.
 
