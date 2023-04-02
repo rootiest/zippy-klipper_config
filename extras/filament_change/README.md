@@ -1,5 +1,5 @@
 <!--
- Copyright (C) 2022 Chris Laprade
+ Copyright (C) 2023 Chris Laprade
  
  This file is part of zippy_config.
  
@@ -48,6 +48,7 @@ During manual filament changes this behavior is modified slightly to account for
   - [Parameters](#parameters)
   - [Additional Steps](#additional-steps)
 - [Changelog](#changelog)
+  - [v2.4.0 2023-04-02](#v240-2023-04-02)
   - [v2.3.0 2023-02-17](#v230-2023-02-17)
   - [v2.2.5 2023-1-27](#v225-2023-1-27)
   - [v2.2.0 2023-1-27](#v220-2023-1-27)
@@ -348,15 +349,15 @@ This process is meant to not only automate the filament change steps, but also t
 
 Filament changes can be initiated by the slicer. This is typically used for color/filament changes at specific points in the print.
 
-In your slicer, simply use the default `M600` command for filament changes/color changes.
+In your slicer, use the `COLOR_CHANGE` command for filament changes/color changes.
 
 In Cura that will require a post-processing plugin.
 
 In PrusaSlicer/SuperSlicer simply add it in the custom gcode for Filament Changes.
 
-In both cases just add `M600` to the gcode for that task.
+In both cases just add `COLOR_CHANGE` to the gcode for that task.
 
-This functions almost identically to the `FILAMENT_RUNOUT` command.
+This functions similarly to the `FILAMENT_RUNOUT` command except it unloads automatically without waiting for user confirmation.
 
 ## Manual Filament Change
 
@@ -440,6 +441,9 @@ This helps to prevent accidental triggering outside of prints when performing ma
 
 # Changelog
 
+## v2.4.0 2023-04-02
+
+- Added `COLOR_CHANGE` macro which can be used for slicer-triggered filament/color changes. Thank you [Peviox](https://github.com/Peviox) for assisting with porting this over from my other project.
 ## v2.3.0 2023-02-17
 
 - Check for missing `min_extrude_temp` setting in config and use `170` as a fallback if it is not defined. (170 is the default value that Klipper uses when none is defined)
