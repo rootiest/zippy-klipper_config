@@ -42,6 +42,8 @@ During manual filament changes this behavior is modified slightly to account for
   - [Slicer Material/Color Change](#slicer-materialcolor-change)
   - [Manual Filament Change](#manual-filament-change)
   - [Manual Purging](#manual-purging)
+  - [Nozzle Change](#nozzle-change)
+  - [Maintenance Parking](#maintenance-parking)
   - [Toggling Filament Sensing](#toggling-filament-sensing)
     - [Automating Filament Sensor Toggling](#automating-filament-sensor-toggling)
 - [Additional Notes](#additional-notes)
@@ -52,6 +54,7 @@ During manual filament changes this behavior is modified slightly to account for
   - [v2.3.0 2023-02-17](#v230-2023-02-17)
   - [v2.2.5 2023-1-27](#v225-2023-1-27)
   - [v2.2.0 2023-1-27](#v220-2023-1-27)
+  - [v2.5.0 2023-4-16](#v250-2023-4-16)
   - [v2.0.1 2023-1-3](#v201-2023-1-3)
   - [v2.0 2023-1-1](#v20-2023-1-1)
   - [v1.9 2022-12-30](#v19-2022-12-30)
@@ -379,6 +382,29 @@ There is also a `PURGE` command included. This command will allow you to extrude
 
 To use this, simply run `PURGE`
 
+## Nozzle Change
+
+You can use the `NOZZLE_CHANGE` command to perform nozzle changes. 
+
+It will park the toolhead in a convenient location (by default the center of the XYZ axes) and then unload the filament.
+
+Once you have completed the nozzle change you can run `NOZZLE_CHANGE_DONE` to load the filament and cool down the hotend.
+
+To change the parking coordinates, see [the MAINTENANCE macro](#maintenance-parking)
+## Maintenance Parking
+
+This macro parks the toolhead in a convenient position for performing maintenance.
+
+To change the maintenance parking position, change all three variable values **on the `MAINTENANCE` macro:
+
+    variable_maint_x: -1
+    variable_maint_y: -1
+    variable_maint_z: -1
+
+When any of these values are set to `-1` the default (centered) parking coordinates will be used.
+
+Changing them all to your preferred coordinates will change the parking location used by `MAINTENANCE` (and others that use it like `NOZZLE_CHANGE`)
+
 ## Toggling Filament Sensing
 
 You can use the following commands to toggle the filament sensor on and off:
@@ -478,6 +504,11 @@ This helps to prevent accidental triggering outside of prints when performing ma
         variable_auto_load: True
         variable_auto_unload: False
         variable_runout: False
+
+## v2.5.0 2023-4-16
+
+- Added `NOZZLE_CHANGE` and `MAINTENANCE` macros.
+- Fixed a typo in the `COLOR_CHANGE` macro.
 
 ## v2.0.1 2023-1-3
 
