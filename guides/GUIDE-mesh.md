@@ -120,7 +120,7 @@ To use this macro, download the `GET_PROBE_LIMITS.cfg` file to your `~/printer_d
 
 Credit to [u/davidosmithII](https://www.reddit.com/user/davidosmithII/) who came up with the idea and created the original macro to do it.
 
-> Nows supports the beacon probe as well. (Thanks [DrFate09](https://github.com/DrFate09))
+> Now supports beacon in addition to bltouch and probe.
 
 ## Leveling Assistance
 

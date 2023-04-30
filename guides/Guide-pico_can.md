@@ -25,6 +25,7 @@
     - [Why use it on your printer?](#why-use-it-on-your-printer)
   - [The SKR-Pico](#the-skr-pico)
   - [How to do it](#how-to-do-it)
+  - [Alternative (Better) Pins](#alternative-better-pins)
   - [Flashing the CANbridge firmware](#flashing-the-canbridge-firmware)
   - [Congrats!](#congrats)
   - [Connect additional CAN boards.](#connect-additional-can-boards)
@@ -153,6 +154,14 @@ Here is what it would look like with the included cable:
 You will connect the CAN signal pins to the screw terminals on the opposite end of the transceiver. 
 
 You will connect the 24V and GND of your CANboard(s) to your PSU.
+
+## Alternative (Better) Pins
+
+I chose to use the UART connector because it's location was convenient and it came with a pre-crimped connector that was already in the correct pin order for my transceiver.
+
+However, it has been pointed out that these transceivers are technically labeled for 3.3V, not 5V. That has not been an issue for me, and mine works perfectly fine at 5V.
+
+If you are concerned with this, have a more sensitive transceiver, or just want to do everything "right" then the SWD header may be a more appropriate fit.
 
 ## Flashing the CANbridge firmware
 
