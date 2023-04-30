@@ -27,9 +27,10 @@
   - [Cura Start G-Code](#cura-start-g-code)
   - [PrusaSlicer Start G-Code](#prusaslicer-start-g-code)
   - [SuperSlicer Start G-Code](#superslicer-start-g-code)
-  - [SuperSlicer/PrusaSlicer/Cura End G-Code](#superslicerprusaslicercura-end-g-code)
+  - [Advanced SuperSlicer Start G-code](#advanced-superslicer-start-g-code)
+  - [IdeaMaker Start G-Code](#ideamaker-start-g-code)
+  - [SuperSlicer/PrusaSlicer/Cura/IdeaMaker End G-Code](#superslicerprusaslicercuraideamaker-end-g-code)
     - [Update:](#update)
-    - [Advanced SuperSlicer Start G-code](#advanced-superslicer-start-g-code)
   - [Why use macros?](#why-use-macros)
   - [Passing Other Parameters](#passing-other-parameters)
   - [Additional Notes](#additional-notes)
@@ -124,23 +125,8 @@ Additionally, the PrusaSlicer format shown in the above section is also compatib
     start_print BED_TEMP={first_layer_bed_temperature[initial_extruder]} EXTRUDER_TEMP={first_layer_temperature[initial_extruder] + extruder_temperature_offset[initial_extruder]} CHAMBER_TEMP={chamber_temperature}
 
 As SuperSlicer supports Klipper directly, you can get even more control using the format in the [Advanced SuperSlicer Start G-code section](#advanced-superslicer-start-g-code) below.
-## SuperSlicer/PrusaSlicer/Cura End G-Code
 
-    end_print
-
-> Note: This code is the same for all Slicers. We just need to call the `END_PRINT` macro, there's no need to pass any values to it.
-
-### Update:
-
-I am now including the `M109`/`M190` dummy commands in the SuperSlicer/PrusaSlicer Start Gcode. PrusaSlicer appears to need them for the same reasons as Cura.
-
-SuperSlicer *shouldn't* when selecting `Klipper` for the G-code Flavor. However, on the latest version the merge with the PrusaSlicer source overwrote this check and it behaves the same way as the others. This has been [confirmed fixed for the next SuperSlicer release](https://github.com/supermerill/SuperSlicer/issues/875) and I will update the guide when that changes.
-
-It's also worth noting this shouldn't be a serious concern in most cases. At most, allowing the Slicer to automatically add those commands after the macro may just cause a slight hesitation/lag immediately before the print begins. 
-
-However, if you wish to do something like offset temperature values using code in your macro, you may have an issue without the dummy commands because the Slicer will set them back at the start of the first layer.
-
-### Advanced SuperSlicer Start G-code
+## Advanced SuperSlicer Start G-code
 
 SuperSlicer (when configured for Klipper flavor) has the option to completely disable any automatic gcode insertion for things like the start gcode. You can use this to get around the need to add additional "dummy" commands.
 
@@ -165,6 +151,29 @@ With those added in your `START_PRINT` macro, your start gcode in SuperSlicer co
 While more advanced, this feature gives you far more control over the behavior of your prints (or at least the pre-print behavior).
 
 If you are using SuperSlicer and comfortable with adding the additional commands to your macro then I would recommend using this feature for more granular control over your prints.
+
+## IdeaMaker Start G-Code
+
+    M190 S0
+    M109 S0
+    start_print BED_TEMP={temperature_heatbed} EXTRUDER_TEMP={temperature_extruder1}
+
+The same quirks as PrusaSlicer apply, so it is necessary to use `M190`/`M109` commands to prevent the slicer adding its own.
+## SuperSlicer/PrusaSlicer/Cura/IdeaMaker End G-Code
+
+    end_print
+
+> Note: This code is the same for all Slicers. We just need to call the `END_PRINT` macro, there's no need to pass any values to it.
+
+### Update:
+
+I am now including the `M109`/`M190` dummy commands in the SuperSlicer/PrusaSlicer Start Gcode. PrusaSlicer appears to need them for the same reasons as Cura.
+
+SuperSlicer *shouldn't* when selecting `Klipper` for the G-code Flavor. However, on the latest version the merge with the PrusaSlicer source overwrote this check and it behaves the same way as the others. This has been [confirmed fixed for the next SuperSlicer release](https://github.com/supermerill/SuperSlicer/issues/875) and I will update the guide when that changes.
+
+It's also worth noting this shouldn't be a serious concern in most cases. At most, allowing the Slicer to automatically add those commands after the macro may just cause a slight hesitation/lag immediately before the print begins. 
+
+However, if you wish to do something like offset temperature values using code in your macro, you may have an issue without the dummy commands because the Slicer will set them back at the start of the first layer.
 
 ## Why use macros?
 
