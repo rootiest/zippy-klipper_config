@@ -29,7 +29,8 @@
   - [SuperSlicer Start G-Code](#superslicer-start-g-code)
   - [Advanced SuperSlicer Start G-code](#advanced-superslicer-start-g-code)
   - [IdeaMaker Start G-Code](#ideamaker-start-g-code)
-  - [SuperSlicer/PrusaSlicer/Cura/IdeaMaker End G-Code](#superslicerprusaslicercuraideamaker-end-g-code)
+  - [OrcaSlicer Start G-Code](#orcaslicer-start-g-code)
+  - [End G-Code for all slicers](#end-g-code-for-all-slicers)
     - [Update:](#update)
   - [Why use macros?](#why-use-macros)
   - [Passing Other Parameters](#passing-other-parameters)
@@ -158,8 +159,16 @@ If you are using SuperSlicer and comfortable with adding the additional commands
     M109 S0
     start_print BED_TEMP={temperature_heatbed} EXTRUDER_TEMP={temperature_extruder1}
 
-The same quirks as PrusaSlicer apply, so it is necessary to use `M190`/`M109` commands to prevent the slicer adding its own.
-## SuperSlicer/PrusaSlicer/Cura/IdeaMaker End G-Code
+> NOTE: The same quirks as PrusaSlicer apply, so it is necessary to use `M190`/`M109` commands to prevent the slicer adding its own.
+
+## OrcaSlicer Start G-Code
+
+    start_print BED_TEMP=[bed_temperature_initial_layer_single] EXTRUDER_TEMP=[nozzle_temperature_initial_layer] CHAMBER_TEMP=[chamber_temperature]
+
+> **IMPORTANT:** Make sure to set the gcode flavor to Klipper. Otherwise you will need to add dummy `M109`/`M190` commands like in PrusaSlicer and IdeaMaker.
+
+> NOTE: Although very similar to PrusaSlicer in many ways, Orca's variable names and notation are unique. The syntax used is different than any of the other slicers shown here.
+## End G-Code for all slicers
 
     end_print
 
