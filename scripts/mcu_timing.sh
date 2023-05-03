@@ -18,19 +18,13 @@
 
 ## Help
 # display help if no parameter is provided or 'help' is provided
-if [ -z "$1" ]; then
-    echo "Usage: mcu_timing.sh [install|update|remove|help]"
+if [ -z "$1" ] || [ "$1" == "help" ]; then
+    echo "Usage: mcu_timing.sh [install|update|remove|patch|check|help]"
     echo "  install: install the custom mcu.py file"
     echo "  update: update the klipper repo and restore the custom mcu.py file"
     echo "  remove: remove the custom mcu.py file"
-    echo "  help: display this help message"
-    exit 0
-fi
-if [ "$1" == "help" ]; then
-    echo "Usage: mcu_timing.sh [install|update|remove|help]"
-    echo "  install: install the custom mcu.py file"
-    echo "  update: update the klipper repo and restore the custom mcu.py file"
-    echo "  remove: remove the custom mcu.py file"
+    echo "  patch: update the klipper repo and modify the new mcu.py file"
+    echo "  check: check if the mcu.py file has been patched"
     echo "  help: display this help message"
     exit 0
 fi
@@ -66,8 +60,41 @@ if [ "$1" == "remove" ]; then
     echo "Removing custom mcu.py file..."
     # remove the custom mcu.py file
     rm ~/klipper/klippy/mcu.py
-    cd ~/klipper
+    # collect the latest mcu.py file from the klipper repo
+    curl -o ~/klipper/klippy/mcu.py https://raw.githubusercontent.com/Klipper3d/klipper/master/klippy/mcu.py
     # update the klipper repo
+    cd ~/klipper
     git pull
 fi
 
+## Patch
+# remove the custom mcu.py file, update the klipper repo, collect the latest mcu.py file from the klipper repo, and modify the new file
+if [ "$1" == "patch" ]; then
+    echo "Patching mcu.py file..."
+    # remove the custom mcu.py file
+    rm ~/klipper/klippy/mcu.py
+    # collect the latest mcu.py file from the klipper repo
+    curl -o ~/klipper/klippy/mcu.py https://raw.githubusercontent.com/Klipper3d/klipper/master/klippy/mcu.py
+    # update the klipper repo
+    cd ~/klipper
+    git pull
+    # change the 'TRSYNC_TIMEOUT = 0.025' line to 'TRSYNC_TIMEOUT = 0.05'
+    sed -i 's/TRSYNC_TIMEOUT = 0.025/TRSYNC_TIMEOUT = 0.05/g' ~/klipper/klippy/mcu.py
+fi
+
+## Check if mcu.py file has been patched
+if [ "$1" == "check" ]; then
+    echo "Checking mcu.py file..."
+    # check if the 'TRSYNC_TIMEOUT = 0.05' line exists
+    if grep -q "TRSYNC_TIMEOUT = 0.05" ~/klipper/klippy/mcu.py; then
+        echo "mcu.py file has been patched"
+    else
+        echo "mcu.py file has not been patched"
+    fi
+fi
+
+## How to do an if or statement
+# if [ "$1" == "install" ] || [ "$1" == "update" ]; then
+
+## How to have git verify the repo
+# git pull
