@@ -92,9 +92,3 @@ if [ "$1" == "check" ]; then
         echo "mcu.py file has not been patched"
     fi
 fi
-
-## How to do an if or statement
-# if [ "$1" == "install" ] || [ "$1" == "update" ]; then
-
-## How to have git verify the repo
-# git pull
