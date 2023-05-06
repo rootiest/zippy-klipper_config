@@ -50,6 +50,7 @@ During manual filament changes this behavior is modified slightly to account for
   - [Parameters](#parameters)
   - [Additional Steps](#additional-steps)
 - [Changelog](#changelog)
+  - [v2.5.2 2023-5-6](#v252-2023-5-6)
   - [v2.4.0 2023-04-02](#v240-2023-04-02)
   - [v2.3.0 2023-02-17](#v230-2023-02-17)
   - [v2.2.5 2023-1-27](#v225-2023-1-27)
@@ -466,6 +467,10 @@ This will ensure the sensor is enabled at the start of prints and then disabled 
 This helps to prevent accidental triggering outside of prints when performing maintenance and other tasks.
 
 # Changelog
+
+## v2.5.2 2023-5-6
+
+- Some fixes for `auto_unload` and homing checks in non-standard use-cases. Thanks for pointing these out Eliminateur#2987!
 
 ## v2.4.0 2023-04-02
 
