@@ -50,6 +50,7 @@ During manual filament changes this behavior is modified slightly to account for
   - [Parameters](#parameters)
   - [Additional Steps](#additional-steps)
 - [Changelog](#changelog)
+  - [v2.5.5 2023-5-6](#v255-2023-5-6)
   - [v2.5.2 2023-5-6](#v252-2023-5-6)
   - [v2.4.0 2023-04-02](#v240-2023-04-02)
   - [v2.3.0 2023-02-17](#v230-2023-02-17)
@@ -140,6 +141,10 @@ This is the length of filament to retract during the unload command. It should b
     variable_purge_length: 50       # Length of filament to extrude during purge
 
 This is the length to extrude when using the PURGE command. This command is used for extra purging if the color is especially slow to change over, or for other manual purging purposes.
+
+    variable_post_load_retraction: 0        # Amount to retract after loading to limit oozing (in mm)
+
+This is the length to retract after loading. You can set this to 0 to disable it, or set the length you'd like to retract. Typically just a few mm is enough to prevent most oozing, but this can also be used to pull the filament completely out of the hot zone for more advanced configurations.
 
 -----
 
@@ -467,6 +472,10 @@ This will ensure the sensor is enabled at the start of prints and then disabled 
 This helps to prevent accidental triggering outside of prints when performing maintenance and other tasks.
 
 # Changelog
+
+## v2.5.5 2023-5-6
+
+- Added `post_load_retraction` which can be used to retract the filament a bit after loading. This can help reduce oozing.
 
 ## v2.5.2 2023-5-6
 
