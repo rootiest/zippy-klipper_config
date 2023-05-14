@@ -34,7 +34,8 @@
   - [Alternative START\_PRINT macros](#alternative-start_print-macros)
     - [START\_PRINT: I have a probe](#start_print-i-have-a-probe)
     - [START\_PRINT: Voron TAP](#start_print-voron-tap)
-    - [Update:](#update)
+  - [Aliases](#aliases)
+  - [Update:](#update)
   - [Why use macros?](#why-use-macros)
   - [Passing Other Parameters](#passing-other-parameters)
   - [Additional Notes](#additional-notes)
@@ -255,7 +256,19 @@ This is a modified version of the simple macro shown above. This adds additional
         M109 S{EXTRUDER_TEMP}
         # Start printing!
 
-### Update:
+## Aliases
+
+Ever get frustrated that sometimes documentation uses `PRINT_START` and other times `START_PRINT` is used?
+
+You can make your system compatible with both wordings by creating a simple alias macro like so:
+
+    [gcode_macro PRINT_START]
+    gcode:
+        START_PRINT {rawparams}
+
+This will effectively make `PRINT_START` an alias for `START_PRINT` and forward any parameters provided to it.
+
+## Update:
 
 I am now including the `M109`/`M190` dummy commands in the SuperSlicer/PrusaSlicer Start Gcode. PrusaSlicer appears to need them for the same reasons as Cura.
 
