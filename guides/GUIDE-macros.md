@@ -21,7 +21,7 @@
 # The Macros
 
 - [The Macros](#the-macros)
-  - [START\_PRINT Macro](#start_print-macro)
+  - [Basic START\_PRINT Macro](#basic-start_print-macro)
   - [END\_PRINT Macro](#end_print-macro)
 - [Slicer Settings](#slicer-settings)
   - [Cura Start G-Code](#cura-start-g-code)
@@ -31,6 +31,9 @@
   - [IdeaMaker Start G-Code](#ideamaker-start-g-code)
   - [OrcaSlicer Start G-Code](#orcaslicer-start-g-code)
   - [End G-Code for all slicers](#end-g-code-for-all-slicers)
+  - [Alternative START\_PRINT macros](#alternative-start_print-macros)
+    - [START\_PRINT: I have a probe](#start_print-i-have-a-probe)
+    - [START\_PRINT: Voron TAP](#start_print-voron-tap)
     - [Update:](#update)
   - [Why use macros?](#why-use-macros)
   - [Passing Other Parameters](#passing-other-parameters)
@@ -41,7 +44,7 @@ These are example macros you can use with your slicer to let Klipper manage the 
 
 You can just paste these macros into your `printer.cfg` file.
 
-## START_PRINT Macro
+## Basic START_PRINT Macro
 
     [gcode_macro START_PRINT]
     gcode:
@@ -64,6 +67,9 @@ You can just paste these macros into your `printer.cfg` file.
         # Set and wait for nozzle to reach temperature
         M109 S{EXTRUDER_TEMP}
 
+For alternative START_PRINT macros, see
+[Alternative START_PRINT macros](#alternative-start_print-macros)
+
 ## END_PRINT Macro
 
     [gcode_macro END_PRINT]
@@ -81,7 +87,10 @@ You can just paste these macros into your `printer.cfg` file.
         # Disable steppers
         M84
 
-These are just the sample start_print and end_print macros copied directly from [the official docs](https://github.com/Klipper3d/klipper/blob/master/config/sample-macros.cfg). I did not change anything and take no credit for these (fairly basic) macros!
+These are just the sample start_print and end_print macros copied directly
+from
+[the official docs](https://github.com/Klipper3d/klipper/blob/master/config/sample-macros.cfg).
+I did not change anything and take no credit for these (fairly basic) macros!
 
 # Slicer Settings
 
@@ -173,6 +182,78 @@ If you are using SuperSlicer and comfortable with adding the additional commands
     end_print
 
 > Note: This code is the same for all Slicers. We just need to call the `END_PRINT` macro, there's no need to pass any values to it.
+
+## Alternative START_PRINT macros
+
+### START_PRINT: I have a probe
+
+This is a modified version of the simple macro shown above. This adds some probe-specific commands.
+
+    [gcode_macro START_PRINT]
+    gcode:
+        {% set BED_TEMP = params.BED_TEMP|default(60)|float %}
+        {% set EXTRUDER_TEMP = params.EXTRUDER_TEMP|default(190)|float %}
+        # Heat bed for probing
+        M190 S{BED_TEMP}
+        # Use absolute coordinates
+        G90
+        # Home the printer
+        G28
+
+        # If you are using QGL:
+        #QUAD_GANTRY_LEVEL
+        #G28 Z
+
+        # If you are using Z-Tilt:
+        #Z_TILT_ADJUST
+
+        # If you are generating a new bed mesh:
+        BED_MESH_CALIBRATE
+
+        # If you are loading an existing mesh:
+        #BED_MESH_PROFILE LOAD=default
+
+        # Move the nozzle near the bed
+        G1 Z5 F3000
+        # Set and wait for nozzle to reach printing temperature
+        M109 S{EXTRUDER_TEMP}
+        # Start printing!
+
+### START_PRINT: Voron TAP
+
+This is a modified version of the simple macro shown above. This adds additional commands and modifies the order slightly to be more compatible with Voron TAP builds.
+
+    [gcode_macro START_PRINT]
+    gcode:
+        {% set BED_TEMP = params.BED_TEMP|default(60)|float %}
+        {% set EXTRUDER_TEMP = params.EXTRUDER_TEMP|default(190)|float %}
+        # Heat nozzle for probing
+        M104 S150
+        # Heat bed for probing
+        M190 S{BED_TEMP}
+        # Use absolute coordinates
+        G90
+        # Home the printer
+        G28
+
+        # If you are using QGL:
+        QUAD_GANTRY_LEVEL
+        G28 Z
+
+        # If you are using Z-Tilt:
+        #Z_TILT_ADJUST
+
+        # If you are generating a new bed mesh:
+        BED_MESH_CALIBRATE
+
+        # If you are loading an existing mesh:
+        #BED_MESH_PROFILE LOAD=default
+
+        # Move the nozzle near the bed
+        G1 Z5 F3000
+        # Set and wait for nozzle to reach printing temperature
+        M109 S{EXTRUDER_TEMP}
+        # Start printing!
 
 ### Update:
 
