@@ -24,7 +24,8 @@
 - [Bed Mesh Boundaries](#bed-mesh-boundaries)
   - [Prerequisites](#prerequisites)
   - [Configuring mesh boundaries](#configuring-mesh-boundaries)
-    - [Sample values:](#sample-values)
+    - [Sample values](#sample-values)
+  - [Example Diagram](#example-diagram)
     - [The Math](#the-math)
   - [Probe Limits Macro](#probe-limits-macro)
   - [Leveling Assistance](#leveling-assistance)
@@ -52,7 +53,7 @@ We need to manually apply the offsets to the mesh boundaries.
 
 The simplest way to explain this is to use an example. So I will include a snippet of example config values so we can demonstrate the math.
 
-### Sample values:
+### Sample values
 
     [stepper_x]
     position_min: -5
@@ -73,6 +74,24 @@ In this example, our mesh_min and mesh_max values would be:
     [bed_mesh]
     mesh_min: 0, 0
     mesh_max: 199, 189
+
+## Example Diagram
+
+Here is a diagram to help visualize the math:
+
+> In this example the probe would be mounted to the front-left of the nozzle which gives it negative offsets for both X and Y.
+
+![Bed Mesh Diagram](resources/bed_mesh_diagram.png)
+
+This is likely somewhat exaggerated from what you will see in practice, but it should help you understand the concept.
+
+It's fairly common for the probe to be unable to reach the full range of the bed. This is especially true if you have a large probe offset.
+
+If your probe is to the front-left of the nozzle, then the offset will affect the `mesh_max` values for both X and Y. Both values will be negative.
+
+If your probe is to the back-right of the nozzle, then the offset will affect the `mesh_min` values for both X and Y. Both values will be positive.
+
+If your probe is to the front-right or back-left of the nozzle, then the offset will affect the `mesh_min` value for one axis and the `mesh_max` value for the other axis. One value will be positive and the other will be negative.
 
 ### The Math
 
