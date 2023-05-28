@@ -87,11 +87,11 @@ This is likely somewhat exaggerated from what you will see in practice, but it s
 
 It's fairly common for the probe to be unable to reach the full range of the bed. This is especially true if you have a large probe offset.
 
-If your probe is to the front-left of the nozzle, then the offset will affect the `mesh_max` values for both X and Y. Both values will be negative.
+If your probe is to the front-left of the nozzle, then the offset will affect the `mesh_max` values for both X and Y. Both offsets will be negative.
 
-If your probe is to the back-right of the nozzle, then the offset will affect the `mesh_min` values for both X and Y. Both values will be positive.
+If your probe is to the back-right of the nozzle, then the offset will affect the `mesh_min` values for both X and Y. Both offsets will be positive.
 
-If your probe is to the front-right or back-left of the nozzle, then the offset will affect the `mesh_min` value for one axis and the `mesh_max` value for the other axis. One value will be positive and the other will be negative.
+If your probe is to the front-right or back-left of the nozzle, then the offset will affect the `mesh_min` value for one axis and the `mesh_max` value for the other axis. One offset will be positive and the other will be negative.
 
 ### The Math
 
