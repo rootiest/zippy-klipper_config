@@ -1,21 +1,23 @@
 <!--
  Copyright (C) 2022 Chris Laprade (chris@rootiest.com)
- 
+
  This file is part of zippy_config.
- 
+
  zippy_config is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation, either version 3 of the License, or
  (at your option) any later version.
- 
+
  zippy_config is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
- 
+
  You should have received a copy of the GNU General Public License
  along with zippy_config.  If not, see <http://www.gnu.org/licenses/>.
 -->
+
+![header](guides/resources/pretty_header.png)
 
 # Rootiest Zippy Klipper
 
@@ -71,7 +73,7 @@ Many may even work on your printer as-is.
 
 But a lot of them won't.
 
-So consider this more of a selection of examples that will likely need to be tailored to fit your unique system. Use it as a resource to see how you *could* do something, not necessarily how you **should**. Feel free to message me with questions if you have them.
+So consider this more of a selection of examples that will likely need to be tailored to fit your unique system. Use it as a resource to see how you _could_ do something, not necessarily how you **should**. Feel free to message me with questions if you have them.
 
 ## Notes
 
@@ -88,7 +90,7 @@ The `machine` folder is included by the [printer.cfg](extras/samples/printer.cfg
 Its only contents (aside from automated overrides) are:
 
     # Rootiest Zippy Klipper config
-    
+
     # Machine  directory
     [include machine/*.cfg]
 
