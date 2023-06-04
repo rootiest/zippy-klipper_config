@@ -57,7 +57,7 @@ Additionally, this config now utilizes:
 
 If you are looking for guides on calibrating or setting up a new Klipper printer, those are found here:
 
-#### [Zippy Guides](guides/README.md)
+#### [Zippy Guides](https://github.com/rootiest/zippy_guides)
 
 ## Warnings
 
