@@ -19,4 +19,4 @@
 
 Please follow the link below to the zippy_guides repository:
 
-# [Advanced Macro Techniques](https://github.com/rootiest/zippy_guides/blob/main/GUIDE-variables.md)
+# [Advanced Macro Techniques](https://github.com/rootiest/zippy_guides/blob/main/guides/variables.md)

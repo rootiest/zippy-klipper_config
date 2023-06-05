@@ -19,4 +19,4 @@
 
 Please follow the link below to the zippy_guides repository:
 
-# [The Macros](https://github.com/rootiest/zippy_guides/blob/main/GUIDE-macros.md)
+# [The Macros](https://github.com/rootiest/zippy_guides/blob/main/guides/macros.md)

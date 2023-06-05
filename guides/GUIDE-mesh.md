@@ -19,4 +19,4 @@
 
 Please follow the link below to the zippy_guides repository:
 
-# [Bed Mesh Boundaries](https://github.com/rootiest/zippy_guides/blob/main/GUIDE-mesh.md)
+# [Bed Mesh Boundaries](https://github.com/rootiest/zippy_guides/blob/main/guides/mesh.md)

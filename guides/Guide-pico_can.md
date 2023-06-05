@@ -19,4 +19,4 @@
 
 Please follow the link below to the zippy_guides repository:
 
-# [CANbus your Pico](https://github.com/rootiest/zippy_guides/blob/main/GUIDE-pico_can.md)
+# [CANbus your Pico](https://github.com/rootiest/zippy_guides/blob/main/guides/pico_can.md)

@@ -19,4 +19,4 @@
 
 Please follow the link below to the zippy_guides repository:
 
-# [Useful Links](https://github.com/rootiest/zippy_guides/blob/main/GUIDE-links.md)
+# [Useful Links](https://github.com/rootiest/zippy_guides/blob/main/guides/links.md)

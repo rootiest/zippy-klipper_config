@@ -19,4 +19,4 @@
 
 Please follow the link below to the zippy_guides repository:
 
-# [Flashing a Pico for USB](https://github.com/rootiest/zippy_guides/blob/main/GUIDE-usb-pico.md)
+# [Flashing a Pico for USB](https://github.com/rootiest/zippy_guides/blob/main/guides/usb-pico.md)

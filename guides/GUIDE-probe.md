@@ -19,4 +19,4 @@
 
 Please follow the link below to the zippy_guides repository:
 
-# [Probe Offsets](https://github.com/rootiest/zippy_guides/blob/main/GUIDE-probe.md)
+# [Probe Offsets](https://github.com/rootiest/zippy_guides/blob/main/guides/probe.md)
