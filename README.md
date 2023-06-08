@@ -151,3 +151,10 @@ Join the [Rootiest Discord server](https://discord.gg/AYjVSvrVF2) for informatio
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/rootiest/zippy_guides/main/resources/github-snake.svg">
   <img alt="Shows a snake consuming the squares from the rootiest contributions graph." src="https://raw.githubusercontent.com/rootiest/zippy_guides/main/resources/github-snake.svg">
 </picture>
+
+<script src='https://cdn.jsdelivr.net/npm/@widgetbot/crate@3' async defer>
+  new Crate({
+      server: '1058478355973939220', // Rootiest Solutions
+      channel: '1058478356934447229' // #welcome
+  })
+</script>
