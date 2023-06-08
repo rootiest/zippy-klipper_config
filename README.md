@@ -17,9 +17,9 @@
  along with zippy_config.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
-![header](guides/resources/pretty_header.png)
-
 # Rootiest Zippy Klipper
+
+![header](guides/resources/pretty_header.png)
 
 This is my klipper_config that uses custom gcode macros extensively to enhance the 3d printing experience.
 
@@ -57,7 +57,7 @@ Additionally, this config now utilizes:
 
 If you are looking for guides on calibrating or setting up a new Klipper printer, those are found here:
 
-#### [Zippy Guides](https://github.com/rootiest/zippy_guides)
+### [Zippy Guides](https://github.com/rootiest/zippy_guides)
 
 ## Warnings
 
