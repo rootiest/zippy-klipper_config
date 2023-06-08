@@ -117,10 +117,6 @@ Sanitized examples can be seen here:
 
 This helps to prevent accidental syncing of your private passwords or tokens as well as reducing clutter from backup files.
 
-## Contact
-
-You can reach me on Discord at `rootiest#5668`
-
 ## Acknowledgments
 
 Many parts of this project were borrowed quite heavily from other people's work.
@@ -143,3 +139,15 @@ To begin using Klipper start by
 
 Klipper is Free Software. See the [license](COPYING) or read the
 [documentation](https://www.klipper3d.org/Overview.html).
+
+## Contact
+
+Rootiest#5668 on Discord (Voron and Klipper servers)
+
+Join the [Rootiest Discord server](https://discord.gg/AYjVSvrVF2) for information and support for my projects.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/rootiest/zippy_guides/main/resources/github-snake-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/rootiest/zippy_guides/main/resources/github-snake.svg">
+  <img alt="Shows a snake consuming the squares from the rootiest contributions graph." src="https://raw.githubusercontent.com/rootiest/zippy_guides/main/resources/github-snake.svg">
+</picture>
