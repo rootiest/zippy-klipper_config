@@ -1,0 +1,46 @@
+name: AI Security Check for Pull Requests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ai_security_check_for_pull_requests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Finding security and privacy code vulnerabilities
+        id: ai_security_check
+        uses: obetomuniz/ai-security-check-for-pull-requests-action@v1.0.0
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPOSITORY: ${{ github.repository }}
+          GH_EVENT_PULL_REQUEST_NUMBER: ${{ github.event.number }}
+          OPENAI_TOKEN: ${{ secrets.OCO_OPENAI_API_KEY }}
+
+      - name: Comment on pull request
+        uses: actions/github-script@v6
+        env:
+          PR_COMMENT: ${{ steps.ai_security_check.outputs.pr_comment }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const prComment = process.env.PR_COMMENT || "No security or privacy issues found.";
+            const { data } = await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: prComment
+            });

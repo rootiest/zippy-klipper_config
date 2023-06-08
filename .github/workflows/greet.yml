@@ -1,0 +1,15 @@
+name: Greet New Contributors
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: '# Welcome ${{ github.actor }}!\nCongrats on creating your first issue.\nPlease follow the issue template to help us resolve your issue quickly.'
+          pr-message: '# Welcome ${{ github.actor }}!\nCongrats on creating your first pull request.\nPlease follow the pull request template to help us review your pull request quickly and effectively.'
