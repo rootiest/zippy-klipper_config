@@ -144,6 +144,10 @@ Klipper is Free Software. See the [license](LICENSE) or read the
 
 Rootiest#5668 on Discord (Voron and Klipper servers)
 
+Donate to support my work:
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/rootiest)
+
 Join the [Rootiest Discord server](https://discord.gg/AYjVSvrVF2) for information and support for my projects.
 
 <picture>
