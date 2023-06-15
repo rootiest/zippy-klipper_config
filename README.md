@@ -23,7 +23,7 @@
 
 ![header](guides/resources/pretty_header.png)
 
-This is my klipper_config that uses custom gcode macros extensively to enhance the 3d printing experience.
+This is my klipper_config that uses custom gcode macros extensively to enhance the 3D printing experience.
 
 It was originally envisioned to allow data to be communicated from the Slicer to Klipper and then stored in variables for use by other macros during/before/after the print but I would like eventually for it to be a much more extensive project that truly takes advantage of what gcode macros can do!
 
