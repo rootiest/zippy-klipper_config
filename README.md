@@ -19,6 +19,8 @@
 
 # Rootiest Zippy Klipper
 
+[![GitHub Super-Linter](https://github.com/rootiest/zippy-klipper_config/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+
 ![header](guides/resources/pretty_header.png)
 
 This is my klipper_config that uses custom gcode macros extensively to enhance the 3d printing experience.
