@@ -150,7 +150,7 @@ Donate to support my work:
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/rootiest)
 
-Join the [Rootiest Discord server](https://discord.gg/AYjVSvrVF2) for information and support for my projects.
+Join the [Rootiest Discord server](http://rootiest.com/discord.html) for information and support for my projects.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/rootiest/zippy_guides/main/resources/github-snake-dark.svg">
