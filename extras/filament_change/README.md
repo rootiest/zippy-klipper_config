@@ -1,18 +1,18 @@
 <!--
  Copyright (C) 2023 Chris Laprade
- 
+
  This file is part of zippy_config.
- 
+
  zippy_config is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation, either version 3 of the License, or
  (at your option) any later version.
- 
+
  zippy_config is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
- 
+
  You should have received a copy of the GNU General Public License
  along with zippy_config.  If not, see <http://www.gnu.org/licenses/>.
 -->
@@ -91,7 +91,7 @@ These are found in the `smart-m600.cfg` file under the following section:
 
 These variables will define everything the macro needs to know about how to operate on your machine.
 
-Nothing else will need to be changed <sup>[*](#additional-steps)
+Nothing else will need to be changed <sup>[\*](#additional-steps)
 
 The configuration variables are listed below with a description of the appropriate values:
 
@@ -107,7 +107,7 @@ In the examples shown, the name used is `filament_sensor`. You can see where tha
 
 Simply set this to the name you use in your configuration for the filament sensor.
 
------
+---
 
     variable_default_temp: 220      # The default temperature used
 
@@ -146,10 +146,10 @@ This is the length to extrude when using the PURGE command. This command is used
 
 This is the length to retract after loading. You can set this to 0 to disable it, or set the length you'd like to retract. Typically just a few mm is enough to prevent most oozing, but this can also be used to pull the filament completely out of the hot zone for more advanced configurations.
 
------
+---
 
-    # NOTE: Speeds are given in mm/min 
-    
+    # NOTE: Speeds are given in mm/min
+
 NOTE: All of the speed variables used below are in mm/min.
 
     variable_fast_speed: 1000       # Speed for fast extruder moves (between extruder and hotend)
@@ -168,7 +168,7 @@ This is the speed used after the filament has reached the hotend during a filame
 
 This is the speed of X/Y moves during the parking actions.
 
------
+---
 
 The following variable allows you to configure behavior of feedback:
 
@@ -184,7 +184,7 @@ The choices are as follows:
 - `118` : Use the `M118` command to output status feedback to the console/terminal.
 - `116` : Use the `M116` command to disable/silence all status feedback.
 
------
+---
 
 The remaining three variables are used to enable optional notification macros:
 
@@ -192,18 +192,18 @@ The remaining three variables are used to enable optional notification macros:
 
 This option enables support for the following macros which are used for LED feedback:
 
-- `STATUS_M600`     Filament change/runout
-- `STATUS_M702`     Filament unload
-- `STATUS_M701`     Filament load
-- `STATUS_HEATING`  Nozzle heating
-- `STATUS_BUSY`     Printer busy
-- `STATUS_READY`    Printer ready
-  
+- `STATUS_M600` Filament change/runout
+- `STATUS_M702` Filament unload
+- `STATUS_M701` Filament load
+- `STATUS_HEATING` Nozzle heating
+- `STATUS_BUSY` Printer busy
+- `STATUS_READY` Printer ready
+
 Some of the macros are found in [the stealthburner led configs](https://github.com/VoronDesign/Voron-Stealthburner/blob/main/Firmware/stealthburner_leds.cfg), but I have added a few extras specific to filament changes. These macros simply activate lighting profiles.
 
 You will need to already have these macros or create them yourself. The stealthburner config linked above contains most of them, but you will need to create a few additional. Use the existing ones as a template.
 
------
+---
 
     variable_audio_status: False    # Use audio feedback macros
 
@@ -238,11 +238,11 @@ The value is given in seconds, with a default of 5 seconds.
 
 This variable specifies the macro name for the audio notification. By default it uses `CHANGE_TUNE` which is compatible with the example macro shown in the `variable_audio_status` section.
 
-However, this option allows you to specify a different macro to customize this behavior. 
+However, this option allows you to specify a different macro to customize this behavior.
 
 The macro specified here will be executed by the audio status notifications. It will also be repeatedly executed at a frequency specified by the previous variable.
 
------
+---
 
     variable_use_telegram: False    # Use Telegram feedback macros
 
@@ -252,17 +252,17 @@ This option enables the following macro:
 
 This macro is used to send a notification via the telegram extension in order to indicate a filament runout
 
------
+---
 
     variable_auto_sensor: False             # Automate filament sensor toggling
 
-This variable enables the *optional* feature that disables the filament sensor outside of prints.
+This variable enables the _optional_ feature that disables the filament sensor outside of prints.
 
 This feature is disabled by default.
 
 Unlike any other function of these macros, this one requires an additional step beyond just setting the variable to `True`.
 
-In order to use this feature, you ***must*** add the following to your `START_PRINT` macro:
+In order to use this feature, you **_must_** add the following to your `START_PRINT` macro:
 
 `ENABLEFILAMENTSENSOR`
 
@@ -295,6 +295,7 @@ This option will cause the printer to perform a nozzle cleaning procedure after 
     variable_clean_macro: 'CLEAN_NOZZLE'    # Set this to the name of your nozzle cleaning macro
 
 This variable is the name of the nozzle cleaning macro used by the option above. You will need to provide your own nozzle-cleaning macro to use this feature.
+
 # Usage
 
 This macro can be used in a few ways as described below:
@@ -331,7 +332,7 @@ Configure your `filament_motion_sensor` as follows:
 
 If your filament sensor is not nearby to your extruder, you should set `variable_auto_load: False`
 
-If your filament sensor *is* just before the extruder, then this feature will allow it to start the loading macro immediately as soon as the sensor detects filament again.
+If your filament sensor _is_ just before the extruder, then this feature will allow it to start the loading macro immediately as soon as the sensor detects filament again.
 
 You can also configure a delay (`variable_load_delay`) if you need a few seconds to push the filament past the sensor and into the extruder.
 
@@ -390,18 +391,19 @@ To use this, simply run `PURGE`
 
 ## Nozzle Change
 
-You can use the `NOZZLE_CHANGE` command to perform nozzle changes. 
+You can use the `NOZZLE_CHANGE` command to perform nozzle changes.
 
 It will park the toolhead in a convenient location (by default the center of the XYZ axes) and then unload the filament.
 
 Once you have completed the nozzle change you can run `NOZZLE_CHANGE_DONE` to load the filament and cool down the hotend.
 
 To change the parking coordinates, see [the MAINTENANCE macro](#maintenance-parking)
+
 ## Maintenance Parking
 
 This macro parks the toolhead in a convenient position for performing maintenance.
 
-To change the maintenance parking position, change all three variable values **on the `MAINTENANCE` macro:
+To change the maintenance parking position, change all three variable values \*\*on the `MAINTENANCE` macro:
 
     variable_maint_x: -1
     variable_maint_y: -1
@@ -447,7 +449,7 @@ All of these macros also support several parameters that allow you to set specif
 - `LENGTH` Allows you to override the length used in the `PURGE` and `UNLOAD_FILAMENT` macros.
 - `FAST` Allows you to override the "fast" length for the `LOAD_FILAMENT` macro
 - `SLOW` Allows you to override the "slow" length for the `LOAD_FILAMENT` macro
--  `SENSOR` Allows you to override the sensor being controlled by the `ENABLEFILAMENTSENSOR` and `DISABLEFILAMENTSENSOR` macros
+- `SENSOR` Allows you to override the sensor being controlled by the `ENABLEFILAMENTSENSOR` and `DISABLEFILAMENTSENSOR` macros
 
 ## Additional Steps
 
@@ -484,6 +486,7 @@ This helps to prevent accidental triggering outside of prints when performing ma
 ## v2.4.0 2023-04-02
 
 - Added `COLOR_CHANGE` macro which can be used for slicer-triggered filament/color changes. Thank you [Peviox](https://github.com/Peviox) for assisting with porting this over from my other project.
+
 ## v2.3.0 2023-02-17
 
 - Check for missing `min_extrude_temp` setting in config and use `170` as a fallback if it is not defined. (170 is the default value that Klipper uses when none is defined)
@@ -493,17 +496,16 @@ This helps to prevent accidental triggering outside of prints when performing ma
 - Add `clean_nozzle` option. Set to `True` to execute a nozzle-cleaning macro after ffilament loading is complete.
 - Add `clean_macro` variable. Use this to specify the name of your nozzle-cleaning macro. You must provide your own nozzle-cleaning macro. This macro is not provided (yet)
 
-
 ## v2.2.0 2023-1-27
 
-- __IMPORTANT: Changes to the way filament insertions work__
-    
-    Regardless of your build, please set the `insert_gcode` for your filament_sensor as follows:
+- **IMPORTANT: Changes to the way filament insertions work**
+
+  Regardless of your build, please set the `insert_gcode` for your filament_sensor as follows:
 
         insert_gcode:
             _INSERT_FILAMENT
 
-    The `auto_load` variable will determine whether insertions automatically trigger a `LOAD_FILAMENT` so you no longer need to adjust your `insert_gcode`. All builds will use the same configuration.
+  The `auto_load` variable will determine whether insertions automatically trigger a `LOAD_FILAMENT` so you no longer need to adjust your `insert_gcode`. All builds will use the same configuration.
 
 - An `auto_unload` option has also been added. This is not enabled by default. Setting `auto_unload: True` will cause the macro to unload the filament immediately after any runout/filament change commands, without any user input.
 
@@ -513,7 +515,6 @@ This helps to prevent accidental triggering outside of prints when performing ma
 - Handle configs that lack a `extruder.min_extrude_temp`
 - Misc Bugfixes
 - The following variables were added in this update:
-    
         variable_use_fluidd: True
         variable_auto_load: True
         variable_auto_unload: False
@@ -527,6 +528,7 @@ This helps to prevent accidental triggering outside of prints when performing ma
 ## v2.0.1 2023-1-3
 
 - Minor bug fix to repair `coldstart` feature. This should hopefully prevent runouts from ever being triggered during manual filament changes.
+
 ## v2.0 2023-1-1
 
 - Added automated filament sensor toggling. This keeps the sensor disabled outside of prints.
@@ -535,6 +537,7 @@ This helps to prevent accidental triggering outside of prints when performing ma
 - Added `[display_status]` in case the user is missing that section.
 - Fixed `HOME_IF_NEEDED` to use the `output` variable.
 - Various organization and documentation improvements
+
 ## v1.9 2022-12-30
 
 - Added configuration variables for `audio_macro` and `audio_freq`.
@@ -544,10 +547,11 @@ This helps to prevent accidental triggering outside of prints when performing ma
 - An example audio tone macro has been added to the README.
 - Additional details and a link have been added to the README section for `led_status`
 - Other minor corrections and formatting adjustments made to the documentation.
+
 # Final Notes
 
 This may seem a bit overwhelming or complicated at first, but if you've ever wanted something more than what the common `M600` macros provide, this is for you!
 
 Just follow the directions carefully, and I think you'll find this is actually much easier to use once you have it configured.
 
-Feel free to contact me on Discord at `rootiest#5668` if you have any questions or issues!
+Feel free to contact me on Discord at `Rootiest` if you have any questions or issues!

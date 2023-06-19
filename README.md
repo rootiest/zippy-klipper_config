@@ -144,7 +144,7 @@ Klipper is Free Software. See the [license](LICENSE) or read the
 
 ## Contact
 
-Rootiest#5668 on Discord (Voron and Klipper servers)
+Rootiest on Discord (Voron and Klipper servers)
 
 Donate to support my work:
 
