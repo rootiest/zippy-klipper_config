@@ -515,10 +515,10 @@ This helps to prevent accidental triggering outside of prints when performing ma
 - Handle configs that lack a `extruder.min_extrude_temp`
 - Misc Bugfixes
 - The following variables were added in this update:
-        variable_use_fluidd: True
-        variable_auto_load: True
-        variable_auto_unload: False
-        variable_runout: False
+  variable_use_fluidd: True
+  variable_auto_load: True
+  variable_auto_unload: False
+  variable_runout: False
 
 ## v2.5.0 2023-4-16
 
@@ -527,7 +527,7 @@ This helps to prevent accidental triggering outside of prints when performing ma
 
 ## v2.0.1 2023-1-3
 
-- Minor bug fix to repair `coldstart` feature. This should hopefully prevent runouts from ever being triggered during manual filament changes.
+- Minor bugfix to repair `coldstart` feature. This should hopefully prevent runouts from ever being triggered during manual filament changes.
 
 ## v2.0 2023-1-1
 
