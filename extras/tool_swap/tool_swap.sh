@@ -58,7 +58,6 @@ fi
 
 # Use sed to search for the regex pattern and replace the matching line with the replace string
 temp_file=$(mktemp)
-# shellcheck disable=SC1003
 sed -e '/\[include tool[0-9]\+\.cfg\]/c\'"$replace_string" "$filename" > "$temp_file"
 
 # Check if any changes were made
