@@ -58,6 +58,7 @@ fi
 
 # Use sed to search for the regex pattern and replace the matching line with the replace string
 temp_file=$(mktemp)
+# shellcheck disable=SC1003
 sed -e '/\[include tool[0-9]\+\.cfg\]/c\'"$replace_string" "$filename" > "$temp_file"
 
 # Check if any changes were made
@@ -67,7 +68,7 @@ then
 else
     # Check if more than one occurrence of the regex pattern was found
     occurrences=$(grep -c '\[include tool[0-9]\+\.cfg\]' "$filename")
-    if [ $occurrences -gt 1 ]
+    if [ "$occurrences" -gt 1 ]
     then
         echo "Error: More than one occurrence of the regex pattern was found."
         exit 1
