@@ -62,7 +62,7 @@ fi
 if [ "$1" == "install" ]; then
     echo -e "\e[31mWARNING: This will modify the mcu.py file and cause the klipper repo to fail verification.\e[0m"
     echo "Press any key to continue or CTRL+C to cancel."
-    read -n 1 -s
+    read -rn 1 -s
     echo "Installing custom mcu.py file..."
     # change the 'TRSYNC_TIMEOUT = 0.025' line to 'TRSYNC_TIMEOUT = 0.05'
     sed -i 's/TRSYNC_TIMEOUT = 0.025/TRSYNC_TIMEOUT = 0.05/g' ~/klipper/klippy/mcu.py
@@ -81,7 +81,7 @@ if [ "$1" == "update" ]; then
     cp ~/klipper/klippy/mcu.py /tmp/mcu.py
     # remove the custom mcu.py file
     rm ~/klipper/klippy/mcu.py
-    cd ~/klipper
+    cd ~/klipper || exit
     # update the klipper repo
     git pull
     # restore the custom mcu.py file
@@ -101,14 +101,14 @@ fi
 if [ "$1" == "remove" ]; then
     echo -e "\e[31mWARNING: This will remove the modification from the mcu.py file.\e[0m"
     echo "Press any key to continue or CTRL+C to cancel."
-    read -n 1 -s
+    read -rn 1 -s
     echo "Removing custom mcu.py file..."
     # remove the custom mcu.py file
     rm ~/klipper/klippy/mcu.py
     # collect the latest mcu.py file from the klipper repo
     curl -o ~/klipper/klippy/mcu.py https://raw.githubusercontent.com/Klipper3d/klipper/master/klippy/mcu.py
     # update the klipper repo
-    cd ~/klipper
+    cd ~/klipper || exit
     git pull
     # Report success or failure
     if grep -q "TRSYNC_TIMEOUT = 0.025" ~/klipper/klippy/mcu.py; then
@@ -123,14 +123,14 @@ fi
 if [ "$1" == "patch" ]; then
     echo -e "\e[31mWARNING: This will modify the mcu.py file and cause the klipper repo to fail verification.\e[0m"
     echo "Press any key to continue or CTRL+C to cancel."
-    read -n 1 -s
+    read -rn 1 -s
     echo "Patching mcu.py file..."
     # remove the custom mcu.py file
     rm ~/klipper/klippy/mcu.py
     # collect the latest mcu.py file from the klipper repo
     curl -o ~/klipper/klippy/mcu.py https://raw.githubusercontent.com/Klipper3d/klipper/master/klippy/mcu.py
     # update the klipper repo
-    cd ~/klipper
+    cd ~/klipper || exit
     git pull
     # change the 'TRSYNC_TIMEOUT = 0.025' line to 'TRSYNC_TIMEOUT = 0.05'
     sed -i 's/TRSYNC_TIMEOUT = 0.025/TRSYNC_TIMEOUT = 0.05/g' ~/klipper/klippy/mcu.py

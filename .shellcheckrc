@@ -2,3 +2,9 @@
 
 # Don't want to escape a single quote?
 disable=SC1003
+
+# Don't use a ( subshell ) to avoid having to cd back.
+disable=SC2103
+
+# Don't check exit code directly with e.g. 'if mycmd;', not indirectly with $?.
+disable=SC2181
