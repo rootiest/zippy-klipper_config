@@ -1,5 +1,5 @@
 #!/bin/bash
-# This script is used to patch the stock Klipper install with the KAMP fork
+# This script is used to patch the stock Klipper install with the testing KAMP fork
 cd ~
 git clone -b for/master/adaptive_bed_mesh https://github.com/voidtrance/klipper.git kamp-klipper
 cd kamp-klipper
