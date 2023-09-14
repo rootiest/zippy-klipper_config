@@ -1,18 +1,18 @@
 #!/bin/bash
 # Copyright (C) 2023 Chris Laprade (chris@rootiest.com)
-# 
+#
 # This file is part of config.
-# 
+#
 # config is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # config is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with config.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -68,3 +68,51 @@ done
 # Provide summary
 num_files=$(echo "$matching_files" | wc -w)
 echo "Moved $num_files file(s) from $1 to $2."
+
+
+
+
+
+
+
+
+
+
+
+
+
+#! /bin/bash
+
+# Find current directory
+current_dir=$(pwd)
+
+# Define the matching pattern
+pattern="printer-\d{8}_\d{6}\.cfg"
+
+# Define backup directory
+backup_dir="$current_dir/backup"
+
+# Create backup directory if it doesn't exist
+if [ ! -d "$backup_dir" ]; then
+    echo "Backup folder does not exist. Creating backup folder..."
+    mkdir -p "$backup_dir"
+fi
+
+# Search using regex for recursivelly files matching the regex pattern in all subdirectories of the current directory
+matching_files=$(find "$current_dir" -type f -wholename "/$pattern")
+# skip any files in the backup directory
+matching_files=$(echo "$matching_files" | grep -v "$backup_dir")
+
+if [ -z "$matching_files" ]; then
+    echo "No files matching the regex were found in the source folder."
+    exit 0
+fi
+
+for file in $matching_files; do
+    # Move the files to the "backup" folder
+    mv "$file" "$backup_dir"
+done
+
+# Provide summary
+num_files=$(echo "$matching_files" | wc -w)
+echo "Moved $num_files file(s) from $current_dir to $backup_dir"
